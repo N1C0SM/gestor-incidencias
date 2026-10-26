@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{ts,html,scss,json,md}\"",
-    "docs": "compodoc -p tsconfig.doc.json -d docs",
+    "docs": "compodoc -p tsconfig.doc.json -d docs && node -e \"require('fs').writeFileSync('docs/.nojekyll','')\"",
     "docs:serve": "compodoc -p tsconfig.doc.json -d docs -s",
     "cap:sync": "npx cap sync",
     "cap:android": "npx cap open android",

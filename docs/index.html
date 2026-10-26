@@ -118,6 +118,8 @@ navegación inferior.</p>
 memoria. No hay backend ni base de datos real. Consulta el
 <a href="#aviso-sobre-los-datos">aviso sobre los datos</a>.</p>
 </blockquote>
+<p><strong>Repositorio:</strong> <a href="https://github.com/N1C0SM/gestor-incidencias">https://github.com/N1C0SM/gestor-incidencias</a> ·
+<strong>Documentación:</strong> <a href="https://n1c0sm.github.io/gestor-incidencias/">https://n1c0sm.github.io/gestor-incidencias/</a></p>
 <p>No hay una demo publicada en Internet: la aplicación se ejecuta en local siguiendo los pasos de
 <a href="#puesta-en-marcha">Puesta en marcha</a>.</p>
 <h2>Índice</h2>
@@ -306,8 +308,9 @@ administrador.</p>
 ├── ngsw-config.json                  # Caché de la PWA
 ├── tsconfig.doc.json                 # Fichero de TypeScript para Compodoc
 ├── tsconfig.json                     # Opciones estrictas y alias &#64;core, &#64;shared, &#64;pages
-└── package.json</code></pre></div><p>Las carpetas generadas (<code>www/</code>, <code>docs/</code>, <code>.angular/</code>, <code>node_modules/</code>) no forman parte del código
-fuente; <code>www/</code> es la salida de la compilación y <code>docs/</code> la de Compodoc.</p>
+└── package.json</code></pre></div><p><code>www/</code> (salida de la compilación para Capacitor) y <code>.angular/</code> están excluidas del repositorio.
+En cambio, <code>docs/</code> <strong>sí se versiona</strong>: contiene la documentación generada con Compodoc y los
+informes de Lighthouse, que forman parte de la entrega.</p>
 <h2>Arquitectura de datos simulados</h2>
 <p>No hay backend. Toda la persistencia es una <strong>simulación didáctica en memoria</strong> que se inicializa
 desde <code>src/app/core/data/seed.ts</code> (3 usuarios, 12 incidencias y 3 eventos de actividad):</p>
@@ -358,9 +361,27 @@ contenido». El objetivo es cumplir las pautas WCAG 2.1 AA.</p>
 </li>
 <li><p><strong>PWA y rendimiento</strong>: la compilación de producción registra un <em>service worker</em> con
 <code>ngsw-config.json</code>, carga perezosa de las pantallas y fuentes del sistema (sin peticiones
-externas), por lo que la aplicación se puede auditar con Lighthouse. No se publican puntuaciones
-porque dependen del dispositivo y de la red de cada prueba.</p>
+externas), por lo que la aplicación se puede auditar con Lighthouse.</p>
 </li>
+</ul>
+<h3>Resultados de Lighthouse</h3>
+<p>Auditorías sobre la compilación de producción (<code>www/</code>), guardadas en
+<a href="docs/lighthouse"><code>docs/lighthouse/</code></a>:</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Categoría</th><th>Escritorio</th><th>Móvil</th></tr>
+</thead>
+<tbody>
+<tr><td>Accesibilidad</td><td><strong>100</strong></td><td><strong>100</strong></td></tr>
+<tr><td>Buenas prácticas</td><td><strong>100</strong></td><td><strong>100</strong></td></tr>
+<tr><td>SEO</td><td><strong>100</strong></td><td><strong>100</strong></td></tr>
+<tr><td>Rendimiento</td><td>89</td><td>59</td></tr>
+</tbody>
+</table>
+<p>Informes completos: <a href="docs/lighthouse/escritorio.report.html">escritorio</a> ·
+<a href="docs/lighthouse/movil.report.html">móvil</a>. El rendimiento móvil se mide con CPU y red
+emuladas (4G lento); el resto de categorías no depende de la red.</p>
+<ul>
 <li><p><strong>Documentación</strong> con Compodoc:</p>
 <b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run docs        # genera la documentación en docs/
 npm run docs:serve  # la genera y la abre en el navegador</code></pre></div></li>

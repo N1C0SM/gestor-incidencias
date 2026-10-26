@@ -1,0 +1,85 @@
+<div class="gi-page">
+  <a class="gi-link gi-nueva__volver" routerLink="/app/incidencias">
+    <ion-icon name="arrow-back-outline" aria-hidden="true" />
+    Volver al listado
+  </a>
+
+  <div class="gi-page__head">
+    <div>
+      <h1 class="gi-page__title">Nueva incidencia</h1>
+      <p class="gi-page__subtitle">Describe el problema para que el equipo pueda resolverlo.</p>
+    </div>
+  </div>
+
+  <section class="gi-card" aria-labelledby="titulo-formulario">
+    <h2 id="titulo-formulario" class="gi-card__title">Datos de la incidencia</h2>
+
+    <form class="gi-form" [formGroup]="formulario" (ngSubmit)="crear()" novalidate>
+      <app-campo
+        etiqueta="Título"
+        placeholder="Resumen breve del problema"
+        autocomplete="off"
+        [maxlength]="120"
+        [requerido]="true"
+        formControlName="titulo"
+        [error]="errores().titulo"
+      />
+
+      <app-campo
+        etiqueta="Categoría"
+        tipo="select"
+        placeholder="Selecciona una categoría"
+        [opciones]="categorias"
+        [requerido]="true"
+        formControlName="categoria"
+        [error]="errores().categoria"
+      />
+
+      <app-campo
+        etiqueta="Prioridad"
+        tipo="select"
+        placeholder="Selecciona la prioridad"
+        [opciones]="prioridades"
+        [requerido]="true"
+        formControlName="prioridad"
+        [error]="errores().prioridad"
+      />
+
+      <app-campo
+        etiqueta="Descripción"
+        tipo="textarea"
+        placeholder="Cuéntanos qué ocurre, desde cuándo y a quién afecta."
+        ayuda="Mínimo 20 caracteres."
+        [filas]="5"
+        [requerido]="true"
+        formControlName="descripcion"
+        [error]="errores().descripcion"
+      />
+
+      @if (errorGeneral(); as mensaje) {
+        <p class="gi-alerta" role="alert">
+          <ion-icon name="alert-circle-outline" aria-hidden="true" />
+          <span>{{ mensaje }}</span>
+        </p>
+      }
+
+      <div class="gi-form__acciones">
+        <ion-button class="gi-btn" type="submit" [disabled]="enviando()">
+          @if (enviando()) {
+            <ion-spinner name="dots" slot="start" aria-hidden="true" />
+          }
+          Crear incidencia
+        </ion-button>
+
+        <ion-button
+          class="gi-btn gi-btn--ghost"
+          type="button"
+          [disabled]="enviando()"
+          (click)="cancelar()"
+        >
+          Cancelar
+        </ion-button>
+      </div>
+    </form>
+  </section>
+</div>

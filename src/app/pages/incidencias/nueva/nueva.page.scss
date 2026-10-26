@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+/* Enlace de retorno sobre el título de la página. */
+.gi-nueva__volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+/* Separación entre el título de la tarjeta y el formulario. */
+.gi-card__title {
+  margin-bottom: 16px;
+}

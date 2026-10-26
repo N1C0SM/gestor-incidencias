@@ -12,8 +12,6 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{ts,html,scss,json,md}\"",
-    "docs": "compodoc -p tsconfig.doc.json -d docs && node -e \"require('fs').writeFileSync('docs/.nojekyll','')\"",
-    "docs:serve": "compodoc -p tsconfig.doc.json -d docs -s",
     "cap:sync": "npx cap sync",
     "cap:android": "npx cap open android",
     "cap:ios": "npx cap open ios"
@@ -48,7 +46,6 @@
     "@capacitor/android": "^8.5.3",
     "@capacitor/cli": "^8.5.3",
     "@capacitor/ios": "^8.5.3",
-    "@compodoc/compodoc": "^2.0.0",
     "@eslint/js": "^10.0.1",
     "angular-eslint": "^22.6.0",
     "eslint": "^10.13.0",
@@ -60,13 +57,5 @@
   },
   "description": "Gestor de Incidencias del centro educativo: aplicación Ionic + Angular del módulo DI 0488.",
   "author": "Nicolás San Marcos",
-  "license": "MIT",
-  "homepage": "https://github.com/N1C0SM/gestor-incidencias#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/N1C0SM/gestor-incidencias.git"
-  },
-  "engines": {
-    "node": ">=22.12"
-  }
+  "license": "MIT"
 }

@@ -1,0 +1,76 @@
+<div class="gi-page">
+  <div class="gi-page__head">
+    <div>
+      <h1 class="gi-page__title">{{ titulo() }}</h1>
+      <p class="gi-page__subtitle">{{ subtitulo() }}</p>
+    </div>
+
+    <div class="gi-page__actions gi-listado__acciones">
+      <ion-button class="gi-btn" type="button" (click)="nueva()">
+        <ion-icon slot="start" name="add-outline" aria-hidden="true" />
+        Nueva incidencia
+      </ion-button>
+
+      <ion-button
+        class="gi-btn gi-btn--outline"
+        type="button"
+        [disabled]="cargando() || filtradas().length === 0"
+        (click)="exportarCsv()"
+      >
+        <ion-icon slot="start" name="download-outline" aria-hidden="true" />
+        CSV
+      </ion-button>
+
+      <ion-button
+        class="gi-btn gi-btn--outline"
+        type="button"
+        [disabled]="cargando() || filtradas().length === 0"
+        (click)="exportarPdf()"
+      >
+        <ion-icon slot="start" name="document-text-outline" aria-hidden="true" />
+        PDF
+      </ion-button>
+    </div>
+  </div>
+
+  <section class="gi-card" aria-labelledby="titulo-listado">
+    <div class="gi-card__head">
+      <h2 id="titulo-listado" class="gi-card__title">Listado</h2>
+    </div>
+
+    <ion-segment
+      class="gi-segment"
+      [value]="filtro()"
+      aria-label="Filtrar las incidencias por estado"
+      (ionChange)="cambiarFiltro($event)"
+    >
+      @for (opcion of opciones; track opcion.valor) {
+        <ion-segment-button class="gi-segment__btn" [value]="opcion.valor">
+          <ion-label>{{ opcion.etiqueta }}</ion-label>
+        </ion-segment-button>
+      }
+    </ion-segment>
+
+    @if (cargando()) {
+      <div class="gi-empty" role="status">
+        <ion-spinner name="dots" aria-hidden="true" />
+        <p>Cargando incidencias…</p>
+      </div>
+    } @else if (filtradas().length === 0) {
+      <div class="gi-empty" role="status">
+        <ion-icon name="file-tray-outline" aria-hidden="true" />
+        <p>{{ mensajeVacio() }}</p>
+        <ion-button class="gi-btn gi-btn--sm" type="button" (click)="nueva()">
+          <ion-icon slot="start" name="add-outline" aria-hidden="true" />
+          Registrar una incidencia
+        </ion-button>
+      </div>
+    } @else {
+      <app-data-table
+        [incidencias]="filtradas()"
+        [mostrarSolicitante]="esAdmin()"
+        (ver)="abrirDetalle($event)"
+      />
+    }
+  </section>
+</div>

@@ -1,0 +1,44 @@
+:host {
+  display: block;
+}
+
+/* Enlace de retorno sobre la cabecera del detalle. */
+.gi-detalle__volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+/* Separación entre la cabecera y las dos columnas del detalle. */
+.gi-detalle__cabecera {
+  margin-bottom: 18px;
+}
+
+/* Estado y prioridad, a la derecha de la cabecera. */
+.gi-detalle__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Columna derecha: tarjeta de estado e informe. */
+.gi-detalle__lateral {
+  display: grid;
+  gap: 16px;
+}
+
+/* Datos de la incidencia bajo la descripción. */
+.gi-datos {
+  margin: 18px 0 0;
+}
+
+/* Botón de informe separado del título de la tarjeta. */
+.gi-detalle__pdf {
+  margin-top: 12px;
+}
+
+/* Espaciado del formulario de estado respecto a su título. */
+.gi-estado-form {
+  margin-top: 12px;
+}

@@ -1,0 +1,68 @@
+/* -------------------------------------------------------------------------
+ * Tema de Ionic — Gestor de Incidencias
+ * Modo Material (md), tema claro, paleta corporativa del módulo DI 0488.
+ * ---------------------------------------------------------------------- */
+:root {
+  /* Tipografía */
+  --ion-font-family: var(--gi-font);
+
+  /* Colores base */
+  --ion-background-color: var(--gi-bg);
+  --ion-background-color-rgb: 245, 247, 251;
+  --ion-text-color: var(--gi-ink);
+  --ion-text-color-rgb: 15, 23, 42;
+
+  /* Primario: azul de la marca */
+  --ion-color-primary: #1d4ed8;
+  --ion-color-primary-rgb: 29, 78, 216;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #1a45be;
+  --ion-color-primary-tint: #3460dc;
+
+  /* Secundario (acentos suaves) */
+  --ion-color-secondary: #0f172a;
+  --ion-color-secondary-rgb: 15, 23, 42;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #0d1425;
+  --ion-color-secondary-tint: #272e3f;
+
+  /* Éxito: incidencia cerrada */
+  --ion-color-success: #15803d;
+  --ion-color-success-rgb: 21, 128, 61;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #127136;
+  --ion-color-success-tint: #2c8d50;
+
+  /* Aviso: incidencia abierta */
+  --ion-color-warning: #b45309;
+  --ion-color-warning-rgb: 180, 83, 9;
+  --ion-color-warning-contrast: #ffffff;
+  --ion-color-warning-contrast-rgb: 255, 255, 255;
+  --ion-color-warning-shade: #9e4908;
+  --ion-color-warning-tint: #bc6422;
+
+  /* Error / validación */
+  --ion-color-danger: #b91c1c;
+  --ion-color-danger-rgb: 185, 28, 28;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #a31919;
+  --ion-color-danger-tint: #c03333;
+
+  --ion-color-medium: #64748b;
+  --ion-color-medium-rgb: 100, 116, 139;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #58687a;
+  --ion-color-medium-tint: #748297;
+
+  /* Estructura de componentes Ionic */
+  --ion-item-background: transparent;
+  --ion-toolbar-background: #0f172a;
+  --ion-toolbar-color: #ffffff;
+  --ion-card-background: #ffffff;
+  --ion-border-color: var(--gi-border);
+}

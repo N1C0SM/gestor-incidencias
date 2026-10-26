@@ -1,0 +1,1107 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Gestor de Incidencias · DI 0488</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Gestor de Incidencias · DI 0488</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  RegistroPage</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/auth/registro/registro.page.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Pantalla de registro.</p>
+<p>El correo se valida en vivo (formato) y de forma asíncrona contra el
+servicio SQL para impedir cuentas duplicadas. Al crear la cuenta la sesión
+queda iniciada con el rol <code>usuario</code>.</p>
+
+    </p>
+
+
+
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+    </div>
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-registro</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>    <code>IonContent</code>
+</div>
+                        <div>    <code>IonButton</code>
+</div>
+                        <div>    <code>IonIcon</code>
+</div>
+                        <div>    <code>IonSpinner</code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+</div>
+                        <div>        <code><a href="../components/BrandPanelComponent.html" target="_self" >BrandPanelComponent</a></code>
+</div>
+                        <div>        <code><a href="../components/CampoComponent.html" target="_self" >CampoComponent</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./registro.page.scss</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./registro.page.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./registro.page.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                        <code>IonContent</code>
+                                </li>
+                                <li>
+                                        <code>IonButton</code>
+                                </li>
+                                <li>
+                                        <code>IonIcon</code>
+                                </li>
+                                <li>
+                                        <code>IonSpinner</code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/BrandPanelComponent.html" target="_self" >BrandPanelComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/CampoComponent.html" target="_self" >CampoComponent</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#ayudaEmail" >ayudaEmail</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#comprobandoCorreo" >comprobandoCorreo</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#enviando" >enviando</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#errores" >errores</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#errorGeneral" >errorGeneral</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#formulario" >formulario</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#crearCuenta" >crearCuenta</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="crearCuenta"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>crearCuenta</b></span>
+                        <a href="#crearCuenta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>crearCuenta()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/pages/auth/registro/registro.page.ts:105</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Valida y crea la cuenta.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ayudaEmail"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>ayudaEmail</b></span>
+                        <a href="#ayudaEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    this.cambios();
+    return this.formulario.controls.email.pending ? &#x27;Comprobando disponibilidad…&#x27; : &#x27;&#x27;;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/pages/auth/registro/registro.page.ts:93</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Texto de ayuda del correo: aviso de comprobación mientras valida.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="comprobandoCorreo"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>comprobandoCorreo</b></span>
+                        <a href="#comprobandoCorreo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    this.cambios();
+    return this.formulario.controls.email.pending;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/pages/auth/registro/registro.page.ts:99</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p><code>true</code> mientras el validador asíncrono está trabajando.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="enviando"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>enviando</b></span>
+                        <a href="#enviando"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/auth/registro/registro.page.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errores"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>errores</b></span>
+                        <a href="#errores"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    this.cambios();
+    const controles &#x3D; this.formulario.controls;
+    const repetida &#x3D; controles.passwordRepeticion;
+
+    return {
+      nombre: this.mensajeNombre(controles.nombre),
+      email: this.mensajeEmail(controles.email),
+      password: this.mensajePassword(controles.password),
+      passwordRepeticion:
+        repetida.touched &amp;&amp; this.formulario.hasError(&#x27;contrasenasDistintas&#x27;)
+          ? &#x27;Las contraseñas no coinciden.&#x27;
+          : null,
+    };
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/pages/auth/registro/registro.page.ts:76</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mensajes de error de todos los campos, recalculados en vivo.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorGeneral"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>errorGeneral</b></span>
+                        <a href="#errorGeneral"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/pages/auth/registro/registro.page.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formulario"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>formulario</b></span>
+                        <a href="#formulario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group(
+    {
+      nombre: [&#x27;&#x27;, [Validators.required, Validators.minLength(3)]],
+      email: [&#x27;&#x27;, [Validators.required, Validators.email], [emailExistsValidator(this.sql)]],
+      password: [&#x27;&#x27;, [Validators.required, contrasenaSegura]],
+      passwordRepeticion: [&#x27;&#x27;, [Validators.required]],
+    },
+    { validators: [contrasenasCoinciden] },
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/pages/auth/registro/registro.page.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from &#x27;@angular/core&#x27;;
+import { toSignal } from &#x27;@angular/core/rxjs-interop&#x27;;
+import {
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  type AbstractControl,
+  Validators,
+} from &#x27;@angular/forms&#x27;;
+import { Router, RouterLink } from &#x27;@angular/router&#x27;;
+import { IonButton, IonContent, IonIcon, IonSpinner } from &#x27;@ionic/angular&#x27;;
+
+import { AuthService } from &#x27;@core/services/auth.service&#x27;;
+import { NotificacionService } from &#x27;@core/services/notificacion.service&#x27;;
+import { SqlService } from &#x27;@core/services/sql.service&#x27;;
+import { emailExistsValidator } from &#x27;@core/validators/email-exists.validator&#x27;;
+import {
+  contrasenaSegura,
+  contrasenasCoinciden,
+} from &#x27;@core/validators/formulario.validators&#x27;;
+import { BrandPanelComponent } from &#x27;@shared/components/brand-panel&#x27;;
+import { CampoComponent } from &#x27;@shared/components/campo&#x27;;
+
+/**
+ * Pantalla de registro.
+ *
+ * El correo se valida en vivo (formato) y de forma asíncrona contra el
+ * servicio SQL para impedir cuentas duplicadas. Al crear la cuenta la sesión
+ * queda iniciada con el rol &#x60;usuario&#x60;.
+ */
+@Component({
+  selector: &#x27;app-registro&#x27;,
+  imports: [
+    IonContent,
+    IonButton,
+    IonIcon,
+    IonSpinner,
+    ReactiveFormsModule,
+    RouterLink,
+    BrandPanelComponent,
+    CampoComponent,
+  ],
+  host: { class: &#x27;ion-page&#x27; },
+  templateUrl: &#x27;./registro.page.html&#x27;,
+  styleUrl: &#x27;./registro.page.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class RegistroPage {
+  private readonly fb &#x3D; inject(NonNullableFormBuilder);
+  private readonly sql &#x3D; inject(SqlService);
+  private readonly auth &#x3D; inject(AuthService);
+  private readonly router &#x3D; inject(Router);
+  private readonly notificacion &#x3D; inject(NotificacionService);
+
+  readonly enviando &#x3D; signal(false);
+  readonly errorGeneral &#x3D; signal&lt;string | null&gt;(null);
+
+  readonly formulario &#x3D; this.fb.group(
+    {
+      nombre: [&#x27;&#x27;, [Validators.required, Validators.minLength(3)]],
+      email: [&#x27;&#x27;, [Validators.required, Validators.email], [emailExistsValidator(this.sql)]],
+      password: [&#x27;&#x27;, [Validators.required, contrasenaSegura]],
+      passwordRepeticion: [&#x27;&#x27;, [Validators.required]],
+    },
+    { validators: [contrasenasCoinciden] },
+  );
+
+  private readonly cambios &#x3D; toSignal(this.formulario.events, { initialValue: undefined });
+
+  /** Mensajes de error de todos los campos, recalculados en vivo. */
+  readonly errores &#x3D; computed(() &#x3D;&gt; {
+    this.cambios();
+    const controles &#x3D; this.formulario.controls;
+    const repetida &#x3D; controles.passwordRepeticion;
+
+    return {
+      nombre: this.mensajeNombre(controles.nombre),
+      email: this.mensajeEmail(controles.email),
+      password: this.mensajePassword(controles.password),
+      passwordRepeticion:
+        repetida.touched &amp;&amp; this.formulario.hasError(&#x27;contrasenasDistintas&#x27;)
+          ? &#x27;Las contraseñas no coinciden.&#x27;
+          : null,
+    };
+  });
+
+  /** Texto de ayuda del correo: aviso de comprobación mientras valida. */
+  readonly ayudaEmail &#x3D; computed(() &#x3D;&gt; {
+    this.cambios();
+    return this.formulario.controls.email.pending ? &#x27;Comprobando disponibilidad…&#x27; : &#x27;&#x27;;
+  });
+
+  /** &#x60;true&#x60; mientras el validador asíncrono está trabajando. */
+  readonly comprobandoCorreo &#x3D; computed(() &#x3D;&gt; {
+    this.cambios();
+    return this.formulario.controls.email.pending;
+  });
+
+  /** Valida y crea la cuenta. */
+  async crearCuenta(): Promise&lt;void&gt; {
+    this.errorGeneral.set(null);
+
+    if (this.formulario.invalid) {
+      this.formulario.markAllAsTouched();
+      return;
+    }
+
+    this.enviando.set(true);
+    try {
+      const valores &#x3D; this.formulario.getRawValue();
+      await this.auth.registrarse({
+        nombre: valores.nombre,
+        email: valores.email,
+        password: valores.password,
+      });
+
+      await this.notificacion.exito(&#x27;Cuenta creada. Ya puedes registrar incidencias.&#x27;);
+      await this.router.navigateByUrl(&#x27;/app/incidencias&#x27;);
+    } catch (error) {
+      this.errorGeneral.set(
+        error instanceof Error ? error.message : &#x27;No se ha podido crear la cuenta.&#x27;,
+      );
+    } finally {
+      this.enviando.set(false);
+    }
+  }
+
+  private mensajeNombre(control: AbstractControl): string | null {
+    if (!control.touched || control.valid) {
+      return null;
+    }
+    if (control.hasError(&#x27;required&#x27;)) {
+      return &#x27;Escribe tu nombre y apellidos.&#x27;;
+    }
+    if (control.hasError(&#x27;minlength&#x27;)) {
+      return &#x27;El nombre debe tener al menos 3 caracteres.&#x27;;
+    }
+    return null;
+  }
+
+  private mensajeEmail(control: AbstractControl): string | null {
+    if (!control.touched || control.valid) {
+      return null;
+    }
+    if (control.hasError(&#x27;required&#x27;)) {
+      return &#x27;Escribe tu correo electrónico.&#x27;;
+    }
+    if (control.hasError(&#x27;email&#x27;)) {
+      return &#x27;El correo no tiene un formato válido.&#x27;;
+    }
+    if (control.hasError(&#x27;emailExistente&#x27;)) {
+      return &#x27;Ya existe una cuenta con este correo electrónico.&#x27;;
+    }
+    return null;
+  }
+
+  private mensajePassword(control: AbstractControl): string | null {
+    if (!control.touched || control.valid) {
+      return null;
+    }
+    if (control.hasError(&#x27;required&#x27;)) {
+      return &#x27;Escribe una contraseña.&#x27;;
+    }
+    if (control.hasError(&#x27;minlength&#x27;)) {
+      return &#x27;La contraseña debe tener al menos 6 caracteres.&#x27;;
+    }
+    if (control.hasError(&#x27;sinLetra&#x27;)) {
+      return &#x27;La contraseña debe incluir al menos una letra.&#x27;;
+    }
+    if (control.hasError(&#x27;sinNumero&#x27;)) {
+      return &#x27;La contraseña debe incluir al menos un número.&#x27;;
+    }
+    return null;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ion-content&gt;
+    &lt;main class&#x3D;&quot;gi-auth&quot;&gt;
+      &lt;h1 class&#x3D;&quot;visually-hidden&quot;&gt;Crear una cuenta en el Gestor de Incidencias&lt;/h1&gt;
+
+      &lt;div class&#x3D;&quot;gi-auth__grid&quot;&gt;
+        &lt;app-brand-panel /&gt;
+
+        &lt;section class&#x3D;&quot;gi-auth-card&quot; aria-labelledby&#x3D;&quot;titulo-registro&quot;&gt;
+          &lt;h2 id&#x3D;&quot;titulo-registro&quot; class&#x3D;&quot;gi-auth-card__title&quot;&gt;Crear una cuenta&lt;/h2&gt;
+          &lt;p class&#x3D;&quot;gi-auth-card__subtitle&quot;&gt;
+            Regístrate para registrar y seguir tus incidencias.
+          &lt;/p&gt;
+
+          &lt;form
+            class&#x3D;&quot;gi-auth-card__form gi-form&quot;
+            [formGroup]&#x3D;&quot;formulario&quot;
+            (ngSubmit)&#x3D;&quot;crearCuenta()&quot;
+            novalidate
+          &gt;
+            &lt;app-campo
+              etiqueta&#x3D;&quot;Nombre y apellidos&quot;
+              placeholder&#x3D;&quot;Nombre completo&quot;
+              autocomplete&#x3D;&quot;name&quot;
+              formControlName&#x3D;&quot;nombre&quot;
+              [error]&#x3D;&quot;errores().nombre&quot;
+            /&gt;
+
+            &lt;app-campo
+              etiqueta&#x3D;&quot;Correo electrónico&quot;
+              tipo&#x3D;&quot;email&quot;
+              placeholder&#x3D;&quot;nombre@centro.es&quot;
+              autocomplete&#x3D;&quot;email&quot;
+              inputmode&#x3D;&quot;email&quot;
+              formControlName&#x3D;&quot;email&quot;
+              [ayuda]&#x3D;&quot;ayudaEmail()&quot;
+              [error]&#x3D;&quot;errores().email&quot;
+            /&gt;
+
+            &lt;app-campo
+              etiqueta&#x3D;&quot;Contraseña&quot;
+              tipo&#x3D;&quot;password&quot;
+              placeholder&#x3D;&quot;Mínimo 6 caracteres&quot;
+              autocomplete&#x3D;&quot;new-password&quot;
+              formControlName&#x3D;&quot;password&quot;
+              revelable
+              ayuda&#x3D;&quot;Al menos 6 caracteres, con una letra y un número.&quot;
+              [error]&#x3D;&quot;errores().password&quot;
+            /&gt;
+
+            &lt;app-campo
+              etiqueta&#x3D;&quot;Repite la contraseña&quot;
+              tipo&#x3D;&quot;password&quot;
+              placeholder&#x3D;&quot;Vuelve a escribir la contraseña&quot;
+              autocomplete&#x3D;&quot;new-password&quot;
+              formControlName&#x3D;&quot;passwordRepeticion&quot;
+              [error]&#x3D;&quot;errores().passwordRepeticion&quot;
+            /&gt;
+
+            @if (errorGeneral(); as mensaje) {
+              &lt;p class&#x3D;&quot;gi-alerta&quot; role&#x3D;&quot;alert&quot;&gt;
+                &lt;ion-icon name&#x3D;&quot;alert-circle-outline&quot; aria-hidden&#x3D;&quot;true&quot; /&gt;
+                &lt;span&gt;{{ mensaje }}&lt;/span&gt;
+              &lt;/p&gt;
+            }
+
+            &lt;ion-button
+              class&#x3D;&quot;gi-btn gi-btn--block gi-auth-card__submit&quot;
+              type&#x3D;&quot;submit&quot;
+              [disabled]&#x3D;&quot;enviando() || comprobandoCorreo()&quot;
+            &gt;
+              @if (enviando()) {
+                &lt;ion-spinner name&#x3D;&quot;dots&quot; slot&#x3D;&quot;start&quot; aria-hidden&#x3D;&quot;true&quot; /&gt;
+              }
+              Crear cuenta
+            &lt;/ion-button&gt;
+          &lt;/form&gt;
+
+          &lt;p class&#x3D;&quot;gi-auth-card__alt&quot;&gt;
+            ¿Ya tienes cuenta?
+            &lt;a routerLink&#x3D;&quot;/login&quot;&gt;Iniciar sesión&lt;/a&gt;
+          &lt;/p&gt;
+
+          &lt;hr class&#x3D;&quot;gi-auth-card__rule&quot; /&gt;
+
+          &lt;p class&#x3D;&quot;gi-nota&quot;&gt;
+            Las cuentas se guardan en memoria: es una simulación didáctica, no hay datos reales.
+          &lt;/p&gt;
+        &lt;/section&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+&lt;/ion-content&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./registro.page.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">:host {
+  display: block;
+}
+
+.gi-auth-card__submit {
+  margin-top: 0;
+}
+
+.gi-nota {
+  margin-top: 16px;
+  color: var(--gi-ink-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-content>    <main class="gi-auth">      <h1 class="visually-hidden">Crear una cuenta en el Gestor de Incidencias</h1>      <div class="gi-auth__grid">        <app-brand-panel />        <section class="gi-auth-card" aria-labelledby="titulo-registro">          <h2 id="titulo-registro" class="gi-auth-card__title">Crear una cuenta</h2>          <p class="gi-auth-card__subtitle">            Regístrate para registrar y seguir tus incidencias.          </p>          <form            class="gi-auth-card__form gi-form"            [formGroup]="formulario"            (ngSubmit)="crearCuenta()"            novalidate          >            <app-campo              etiqueta="Nombre y apellidos"              placeholder="Nombre completo"              autocomplete="name"              formControlName="nombre"              [error]="errores().nombre"            />            <app-campo              etiqueta="Correo electrónico"              tipo="email"              placeholder="nombre@centro.es"              autocomplete="email"              inputmode="email"              formControlName="email"              [ayuda]="ayudaEmail()"              [error]="errores().email"            />            <app-campo              etiqueta="Contraseña"              tipo="password"              placeholder="Mínimo 6 caracteres"              autocomplete="new-password"              formControlName="password"              revelable              ayuda="Al menos 6 caracteres, con una letra y un número."              [error]="errores().password"            />            <app-campo              etiqueta="Repite la contraseña"              tipo="password"              placeholder="Vuelve a escribir la contraseña"              autocomplete="new-password"              formControlName="passwordRepeticion"              [error]="errores().passwordRepeticion"            />            @if (errorGeneral(); as mensaje) {              <p class="gi-alerta" role="alert">                <ion-icon name="alert-circle-outline" aria-hidden="true" />                <span>{{ mensaje }}</span>              </p>            }            <ion-button              class="gi-btn gi-btn--block gi-auth-card__submit"              type="submit"              [disabled]="enviando() || comprobandoCorreo()"            >              @if (enviando()) {                <ion-spinner name="dots" slot="start" aria-hidden="true" />              }              Crear cuenta            </ion-button>          </form>          <p class="gi-auth-card__alt">            ¿Ya tienes cuenta?            <a routerLink="/login">Iniciar sesión</a>          </p>          <hr class="gi-auth-card__rule" />          <p class="gi-nota">            Las cuentas se guardan en memoria: es una simulación didáctica, no hay datos reales.          </p>        </section>      </div>    </main></ion-content></div>'
+    var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'AyudaPage', 'selector': 'app-ayuda'},{'name': 'BrandPanelComponent', 'selector': 'app-brand-panel'},{'name': 'CampoComponent', 'selector': 'app-campo'},{'name': 'DashboardPage', 'selector': 'app-dashboard'},{'name': 'DataTableComponent', 'selector': 'app-data-table'},{'name': 'DetallePage', 'selector': 'app-detalle'},{'name': 'GraficoEstadosComponent', 'selector': 'app-grafico-estados'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ListadoPage', 'selector': 'app-listado'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'NuevaPage', 'selector': 'app-nueva'},{'name': 'RegistroPage', 'selector': 'app-registro'},{'name': 'ShellComponent', 'selector': 'app-shell'},{'name': 'StatCardComponent', 'selector': 'app-stat-card'},{'name': 'TabBarComponent', 'selector': 'app-tabbar'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'RegistroPage'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'RegistroPage.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -65,5 +65,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/N1C0SM/gestor-incidencias.git"
+  },
+  "engines": {
+    "node": ">=22.12"
   }
 }

@@ -19,8 +19,33 @@ navegación inferior.
 No hay una demo publicada en Internet: la aplicación se ejecuta en local siguiendo los pasos de
 [Puesta en marcha](#puesta-en-marcha).
 
+## Capturas
+
+Las imágenes están tomadas de la aplicación en funcionamiento (`docs/capturas/`).
+
+**Acceso** — misma pantalla en escritorio y en móvil:
+
+![Pantalla de acceso en escritorio](docs/capturas/acceso-escritorio.png)
+
+![Pantalla de acceso en móvil](docs/capturas/acceso-movil.png)
+
+**Panel de administración** — indicadores, gráfico por estado y actividad reciente:
+
+![Panel de administración](docs/capturas/panel-escritorio.png)
+
+**Listado de incidencias** — filtros por estado, buscador y contador:
+
+![Listado de incidencias en escritorio](docs/capturas/incidencias-escritorio.png)
+
+![Listado de incidencias en móvil](docs/capturas/incidencias-movil.png)
+
+**Detalle de una incidencia** — con el cambio de estado reservado al administrador:
+
+![Detalle de una incidencia](docs/capturas/detalle-escritorio.png)
+
 ## Índice
 
+- [Capturas](#capturas)
 - [Características](#características)
 - [Stack técnico](#stack-técnico)
 - [Puesta en marcha](#puesta-en-marcha)

@@ -43,9 +43,6 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 
-# Documentos internos de trabajo del equipo (no forman parte de la entrega)
-.equipo/
-
 # Salida de compilación para Capacitor
 /www
 /android
@@ -56,3 +53,6 @@ Thumbs.db
 
 # Ficheros temporales del sistema
 *.log
+
+# Documentación generada con Compodoc
+/docs

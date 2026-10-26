@@ -1,0 +1,80 @@
+@if (conBuscador || conContador) {
+  <div class="gi-table-toolbar">
+    @if (conBuscador) {
+      <label class="gi-search">
+        <span class="visually-hidden">Buscar en la tabla</span>
+        <ion-icon name="search-outline" aria-hidden="true" />
+        <input
+          type="search"
+          [value]="busqueda()"
+          (input)="alBuscar($event)"
+          placeholder="Buscar en la tabla..."
+          autocomplete="off"
+        />
+      </label>
+    }
+
+    @if (conContador) {
+      <p class="gi-table__contador" aria-live="polite">
+        {{ filtradas().length }} de {{ total() }} registros
+      </p>
+    }
+  </div>
+}
+
+<div class="gi-table-wrap">
+  <div class="gi-table-scroll">
+    <table class="gi-table">
+      <caption class="visually-hidden">
+        Listado de incidencias del centro
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Código</th>
+          <th scope="col">Título</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Prioridad</th>
+          <th scope="col">Fecha</th>
+          @if (mostrarSolicitante) {
+            <th scope="col">Solicitante</th>
+          }
+          @if (mostrarAcciones) {
+            <th scope="col"><span class="visually-hidden">Acciones</span></th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (incidencia of filtradas(); track incidencia.id) {
+          <tr>
+            <td class="gi-table__codigo">{{ incidencia.codigo }}</td>
+            <td class="gi-table__titulo">{{ incidencia.titulo }}</td>
+            <td [class]="'gi-table__estado ' + claseEstado(incidencia.estado)">
+              {{ ETIQUETA_ESTADO[incidencia.estado] }}
+            </td>
+            <td class="gi-table__prioridad">{{ ETIQUETA_PRIORIDAD[incidencia.prioridad] }}</td>
+            <td class="gi-table__fecha">{{ formatearFecha(incidencia.fecha) }}</td>
+            @if (mostrarSolicitante) {
+              <td class="gi-table__solicitante">{{ incidencia.solicitante }}</td>
+            }
+            @if (mostrarAcciones) {
+              <td class="gi-table__accion">
+                <button
+                  type="button"
+                  class="gi-link"
+                  (click)="ver.emit(incidencia)"
+                  [attr.aria-label]="'Ver el detalle de la incidencia ' + incidencia.codigo"
+                >
+                  Ver
+                </button>
+              </td>
+            }
+          </tr>
+        } @empty {
+          <tr>
+            <td class="gi-table__vacio" [attr.colspan]="columnas()">{{ textoVacio }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

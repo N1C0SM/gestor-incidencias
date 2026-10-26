@@ -8,10 +8,11 @@
   min-width: 0;
 }
 
-/* La tarjeta «flush» deja la tabla a sangre: este relleno la alinea con el título. */
+/* La tarjeta «flush» deja la tabla a sangre: 16 px de relleno alinean la tabla
+   con el título y dejan los 664 px útiles que necesita la tabla del panel. */
 .gi-dashboard__main app-data-table {
   display: block;
-  padding: 0 20px 18px;
+  padding: 0 16px 18px;
 }
 
 .gi-cargando {
@@ -30,11 +31,4 @@
 
 .gi-cargando__texto {
   font-size: 14.5px;
-}
-
-/* En pantallas estrechas el relleno de la tabla se reduce para no perder ancho. */
-@media (max-width: 640px) {
-  .gi-dashboard__main app-data-table {
-    padding: 0 16px 16px;
-  }
 }

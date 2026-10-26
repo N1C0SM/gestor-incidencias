@@ -1,0 +1,122 @@
+<div class="gi-page">
+  <div class="gi-page__head">
+    <div>
+      <h1 class="gi-page__title">Hola, {{ nombre() }}</h1>
+      <p class="gi-page__subtitle">
+        Resumen de las incidencias registradas en el centro.
+      </p>
+    </div>
+
+    <div class="gi-page__actions">
+      <ion-button
+        type="button"
+        class="gi-btn gi-btn--outline"
+        aria-label="Actualizar los datos del panel"
+        [disabled]="cargando() || actualizando()"
+        (click)="actualizar()"
+      >
+        @if (actualizando()) {
+          <ion-spinner slot="start" name="dots" aria-hidden="true" />
+        } @else {
+          <ion-icon slot="start" name="refresh-outline" aria-hidden="true" />
+        }
+        Actualizar
+      </ion-button>
+
+      <ion-button
+        type="button"
+        class="gi-btn gi-btn--outline"
+        aria-label="Descargar el listado filtrado en CSV"
+        [disabled]="cargando()"
+        (click)="exportarCsv()"
+      >
+        <ion-icon slot="start" name="download-outline" aria-hidden="true" />
+        CSV
+      </ion-button>
+
+      <ion-button
+        type="button"
+        class="gi-btn"
+        aria-label="Descargar el listado filtrado en PDF"
+        [disabled]="cargando()"
+        (click)="exportarPdf()"
+      >
+        <ion-icon slot="start" name="document-text-outline" aria-hidden="true" />
+        PDF
+      </ion-button>
+    </div>
+  </div>
+
+  @if (cargando()) {
+    <div class="gi-cargando" role="status" aria-live="polite">
+      <ion-spinner name="crescent" aria-hidden="true" />
+      <p class="gi-cargando__texto">Cargando el panel…</p>
+    </div>
+  } @else {
+    <div class="gi-stats" role="group" aria-label="Indicadores de incidencias">
+      @for (indicador of indicadores(); track indicador.filtro) {
+        <app-stat-card
+          [etiqueta]="indicador.etiqueta"
+          [valor]="indicador.valor"
+          [detalle]="indicador.detalle"
+          [color]="indicador.color"
+          [activo]="filtro() !== 'todas' && filtro() === indicador.filtro"
+          (seleccionar)="filtrar(indicador.filtro)"
+        />
+      }
+    </div>
+
+    <div class="gi-dashboard">
+      <div class="gi-dashboard__main">
+        <section class="gi-card" aria-labelledby="titulo-grafico">
+          <div class="gi-card__head">
+            <h2 class="gi-card__title" id="titulo-grafico">Incidencias por estado</h2>
+          </div>
+
+          <div class="gi-chart">
+            <app-grafico-estados [valores]="valoresGrafico()" />
+          </div>
+        </section>
+
+        <section class="gi-card gi-card--flush" aria-labelledby="titulo-listado">
+          <div class="gi-card__head">
+            <h2 class="gi-card__title" id="titulo-listado">{{ tituloTabla() }}</h2>
+            <button type="button" class="gi-link" (click)="filtrar('todas')">
+              Ver todas
+            </button>
+          </div>
+
+          <app-data-table
+            [incidencias]="filas()"
+            [mostrarSolicitante]="true"
+            (ver)="abrirDetalle($event)"
+          />
+        </section>
+      </div>
+
+      <aside class="gi-card" aria-labelledby="titulo-actividad">
+        <div class="gi-card__head">
+          <h2 class="gi-card__title" id="titulo-actividad">Actividad en tiempo real</h2>
+        </div>
+
+        <div class="gi-activity" role="log" aria-live="polite" aria-labelledby="titulo-actividad">
+          @for (evento of actividad(); track evento.id) {
+            <div class="gi-activity__item">
+              <span class="gi-activity__punto" aria-hidden="true"></span>
+              <div>
+                <p class="gi-activity__texto">{{ evento.texto }}</p>
+                <time class="gi-activity__fecha" [attr.datetime]="evento.fecha">
+                  {{ formatearFechaHora(evento.fecha) }}
+                </time>
+              </div>
+            </div>
+          } @empty {
+            <p class="gi-activity__texto">Todavía no hay movimientos registrados.</p>
+          }
+        </div>
+
+        <p class="gi-activity__pie">Datos del servicio NoSQL simulado</p>
+      </aside>
+    </div>
+  }
+</div>

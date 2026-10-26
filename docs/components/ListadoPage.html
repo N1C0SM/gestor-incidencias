@@ -1,0 +1,1508 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Gestor de Incidencias · DI 0488</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Gestor de Incidencias · DI 0488</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ListadoPage</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/incidencias/listado/listado.page.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Pantalla de listado de incidencias.</p>
+<p>El administrador consulta las incidencias de todo el centro y ve la columna
+del solicitante; el usuario solo ve las suyas. El segmento filtra por estado
+y los botones CSV/PDF exportan exactamente el listado que se está viendo.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+    </div>
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-listado</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>    <code>IonButton</code>
+</div>
+                        <div>    <code>IonIcon</code>
+</div>
+                        <div>    <code>IonLabel</code>
+</div>
+                        <div>    <code>IonSegment</code>
+</div>
+                        <div>    <code>IonSegmentButton</code>
+</div>
+                        <div>    <code>IonSpinner</code>
+</div>
+                        <div>        <code><a href="../components/DataTableComponent.html" target="_self" >DataTableComponent</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./listado.page.scss</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./listado.page.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./listado.page.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                        <code>IonButton</code>
+                                </li>
+                                <li>
+                                        <code>IonIcon</code>
+                                </li>
+                                <li>
+                                        <code>IonLabel</code>
+                                </li>
+                                <li>
+                                        <code>IonSegment</code>
+                                </li>
+                                <li>
+                                        <code>IonSegmentButton</code>
+                                </li>
+                                <li>
+                                        <code>IonSpinner</code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/DataTableComponent.html" target="_self" >DataTableComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#cargando" >cargando</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#esAdmin" >esAdmin</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#filtradas" >filtradas</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#filtro" >filtro</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#incidencias" >incidencias</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#mensajeVacio" >mensajeVacio</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#opciones" >opciones</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#subtitulo" >subtitulo</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#titulo" >titulo</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#abrirDetalle" >abrirDetalle</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#cambiarFiltro" >cambiarFiltro</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#exportarCsv" >exportarCsv</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#exportarPdf" >exportarPdf</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#nueva" >nueva</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="abrirDetalle"></a>
+                    <span class="name">
+                        <span ><b>abrirDetalle</b></span>
+                        <a href="#abrirDetalle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>abrirDetalle(incidencia: <a href="../interfaces/Incidencia.html" target="_self">Incidencia</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="146"
+                                    class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:146</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Abre el detalle de la incidencia pulsada.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>incidencia</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Incidencia.html" target="_self" >Incidencia</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cambiarFiltro"></a>
+                    <span class="name">
+                        <span ><b>cambiarFiltro</b></span>
+                        <a href="#cambiarFiltro"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cambiarFiltro(evento: <a href="https://angular.dev/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="138"
+                                    class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:138</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Filtra la tabla cuando cambia el segmento.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>evento</td>
+                                            <td>
+                                                            <code><a href="https://angular.dev/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportarCsv"></a>
+                    <span class="name">
+                        <span ><b>exportarCsv</b></span>
+                        <a href="#exportarCsv"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exportarCsv()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="156"
+                                    class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:156</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Exporta en CSV el listado filtrado que se está viendo.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportarPdf"></a>
+                    <span class="name">
+                        <span ><b>exportarPdf</b></span>
+                        <a href="#exportarPdf"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exportarPdf()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="161"
+                                    class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:161</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Exporta en PDF el listado filtrado que se está viendo.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:133</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nueva"></a>
+                    <span class="name">
+                        <span ><b>nueva</b></span>
+                        <a href="#nueva"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>nueva()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="151"
+                                    class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:151</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Navega al formulario de alta.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargando"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>cargando</b></span>
+                        <a href="#cargando"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(true)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:88</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p><code>true</code> mientras el servicio SQL simulado devuelve los datos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="esAdmin"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>esAdmin</b></span>
+                        <a href="#esAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.auth.esAdmin</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:82</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p><code>true</code> cuando la sesión pertenece a un administrador.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filtradas"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>filtradas</b></span>
+                        <a href="#filtradas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed&lt;readonly Incidencia[]&gt;(() &#x3D;&gt; {
+    const filtro &#x3D; this.filtro();
+    const incidencias &#x3D; this._incidencias();
+
+    return filtro &#x3D;&#x3D;&#x3D; &#x27;todas&#x27;
+      ? incidencias
+      : incidencias.filter((incidencia) &#x3D;&gt; incidencia.estado &#x3D;&#x3D;&#x3D; filtro);
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:99</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Incidencias que se muestran en la tabla, ya filtradas por el segmento.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filtro"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>filtro</b></span>
+                        <a href="#filtro"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;FiltroListado&gt;(&#x27;todas&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:85</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Filtro seleccionado en el segmento.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="incidencias"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>incidencias</b></span>
+                        <a href="#incidencias"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._incidencias.asReadonly()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:96</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Incidencias visibles para el rol, antes de filtrar por estado.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mensajeVacio"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>mensajeVacio</b></span>
+                        <a href="#mensajeVacio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    if (this._incidencias().length &#x3D;&#x3D;&#x3D; 0) {
+      return this.esAdmin()
+        ? &#x27;Todavía no hay incidencias registradas en el centro.&#x27;
+        : &#x27;Todavía no has registrado ninguna incidencia.&#x27;;
+    }
+    return &#x27;No hay incidencias en este estado.&#x27;;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:119</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mensaje del estado vacío: sin datos o sin resultados para el filtro.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="opciones"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>opciones</b></span>
+                        <a href="#opciones"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>OPCIONES_FILTRO</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:91</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opciones que pinta el segmento.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subtitulo"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>subtitulo</b></span>
+                        <a href="#subtitulo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt;
+    this.esAdmin()
+      ? &#x27;Consulta y gestiona las incidencias de todo el centro.&#x27;
+      : &#x27;Consulta el estado de las incidencias que has registrado.&#x27;,
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:112</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Subtítulo de la página según el rol de la sesión.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="titulo"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>titulo</b></span>
+                        <a href="#titulo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; (this.esAdmin() ? &#x27;Todas las incidencias&#x27; : &#x27;Mis incidencias&#x27;))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/pages/incidencias/listado/listado.page.ts:109</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Título de la página según el rol de la sesión.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  Component,
+  type OnInit,
+  computed,
+  inject,
+  signal,
+} from &#x27;@angular/core&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import {
+  IonButton,
+  IonIcon,
+  IonLabel,
+  IonSegment,
+  IonSegmentButton,
+  IonSpinner,
+} from &#x27;@ionic/angular&#x27;;
+
+import type { Estado, Incidencia } from &#x27;@core/models&#x27;;
+import { AuthService } from &#x27;@core/services/auth.service&#x27;;
+import { ExportService } from &#x27;@core/services/export.service&#x27;;
+import { NotificacionService } from &#x27;@core/services/notificacion.service&#x27;;
+import { SqlService } from &#x27;@core/services/sql.service&#x27;;
+import { DataTableComponent } from &#x27;@shared/components/data-table&#x27;;
+
+/** Filtro activo del segmento: «todas» o uno de los estados del ciclo de vida. */
+type FiltroListado &#x3D; &#x27;todas&#x27; | Estado;
+
+/** Opción que pinta cada botón del segmento. */
+interface OpcionFiltro {
+  readonly valor: FiltroListado;
+  readonly etiqueta: string;
+}
+
+/** Opciones del segmento, en el orden de la maqueta. */
+const OPCIONES_FILTRO: readonly OpcionFiltro[] &#x3D; [
+  { valor: &#x27;todas&#x27;, etiqueta: &#x27;Todas&#x27; },
+  { valor: &#x27;abierta&#x27;, etiqueta: &#x27;Abiertas&#x27; },
+  { valor: &#x27;en_proceso&#x27;, etiqueta: &#x27;En proceso&#x27; },
+  { valor: &#x27;cerrada&#x27;, etiqueta: &#x27;Cerradas&#x27; },
+];
+
+/**
+ * Comprueba que el valor emitido por el segmento es un filtro conocido.
+ * El componente de Ionic emite &#x60;string | number | undefined&#x60;, así que hay que
+ * estrechar el tipo antes de guardarlo en el signal.
+ */
+function esFiltro(valor: string | number | undefined): valor is FiltroListado {
+  return valor &#x3D;&#x3D;&#x3D; &#x27;todas&#x27; || valor &#x3D;&#x3D;&#x3D; &#x27;abierta&#x27; || valor &#x3D;&#x3D;&#x3D; &#x27;en_proceso&#x27; || valor &#x3D;&#x3D;&#x3D; &#x27;cerrada&#x27;;
+}
+
+/**
+ * Pantalla de listado de incidencias.
+ *
+ * El administrador consulta las incidencias de todo el centro y ve la columna
+ * del solicitante; el usuario solo ve las suyas. El segmento filtra por estado
+ * y los botones CSV/PDF exportan exactamente el listado que se está viendo.
+ */
+@Component({
+  selector: &#x27;app-listado&#x27;,
+  imports: [
+    IonButton,
+    IonIcon,
+    IonLabel,
+    IonSegment,
+    IonSegmentButton,
+    IonSpinner,
+    DataTableComponent,
+  ],
+  templateUrl: &#x27;./listado.page.html&#x27;,
+  styleUrl: &#x27;./listado.page.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ListadoPage implements OnInit {
+  private readonly sql &#x3D; inject(SqlService);
+  private readonly auth &#x3D; inject(AuthService);
+  private readonly exportService &#x3D; inject(ExportService);
+  private readonly notificacion &#x3D; inject(NotificacionService);
+  private readonly router &#x3D; inject(Router);
+
+  /** &#x60;true&#x60; cuando la sesión pertenece a un administrador. */
+  readonly esAdmin &#x3D; this.auth.esAdmin;
+
+  /** Filtro seleccionado en el segmento. */
+  readonly filtro &#x3D; signal&lt;FiltroListado&gt;(&#x27;todas&#x27;);
+
+  /** &#x60;true&#x60; mientras el servicio SQL simulado devuelve los datos. */
+  readonly cargando &#x3D; signal(true);
+
+  /** Opciones que pinta el segmento. */
+  protected readonly opciones &#x3D; OPCIONES_FILTRO;
+
+  private readonly _incidencias &#x3D; signal&lt;readonly Incidencia[]&gt;([]);
+
+  /** Incidencias visibles para el rol, antes de filtrar por estado. */
+  readonly incidencias &#x3D; this._incidencias.asReadonly();
+
+  /** Incidencias que se muestran en la tabla, ya filtradas por el segmento. */
+  readonly filtradas &#x3D; computed&lt;readonly Incidencia[]&gt;(() &#x3D;&gt; {
+    const filtro &#x3D; this.filtro();
+    const incidencias &#x3D; this._incidencias();
+
+    return filtro &#x3D;&#x3D;&#x3D; &#x27;todas&#x27;
+      ? incidencias
+      : incidencias.filter((incidencia) &#x3D;&gt; incidencia.estado &#x3D;&#x3D;&#x3D; filtro);
+  });
+
+  /** Título de la página según el rol de la sesión. */
+  readonly titulo &#x3D; computed(() &#x3D;&gt; (this.esAdmin() ? &#x27;Todas las incidencias&#x27; : &#x27;Mis incidencias&#x27;));
+
+  /** Subtítulo de la página según el rol de la sesión. */
+  readonly subtitulo &#x3D; computed(() &#x3D;&gt;
+    this.esAdmin()
+      ? &#x27;Consulta y gestiona las incidencias de todo el centro.&#x27;
+      : &#x27;Consulta el estado de las incidencias que has registrado.&#x27;,
+  );
+
+  /** Mensaje del estado vacío: sin datos o sin resultados para el filtro. */
+  readonly mensajeVacio &#x3D; computed(() &#x3D;&gt; {
+    if (this._incidencias().length &#x3D;&#x3D;&#x3D; 0) {
+      return this.esAdmin()
+        ? &#x27;Todavía no hay incidencias registradas en el centro.&#x27;
+        : &#x27;Todavía no has registrado ninguna incidencia.&#x27;;
+    }
+    return &#x27;No hay incidencias en este estado.&#x27;;
+  });
+
+  /** Nombre de los ficheros exportados, según el rol de la sesión. */
+  private readonly nombreInforme &#x3D; computed(() &#x3D;&gt;
+    this.esAdmin() ? &#x27;incidencias-centro&#x27; : &#x27;mis-incidencias&#x27;,
+  );
+
+  ngOnInit(): void {
+    void this.cargar();
+  }
+
+  /** Filtra la tabla cuando cambia el segmento. */
+  cambiarFiltro(evento: Event): void {
+    const valor &#x3D; (evento as CustomEvent&lt;{ value?: string | number }&gt;).detail?.value;
+    if (esFiltro(valor)) {
+      this.filtro.set(valor);
+    }
+  }
+
+  /** Abre el detalle de la incidencia pulsada. */
+  abrirDetalle(incidencia: Incidencia): void {
+    void this.router.navigate([&#x27;/app/incidencias&#x27;, incidencia.codigo]);
+  }
+
+  /** Navega al formulario de alta. */
+  nueva(): void {
+    void this.router.navigate([&#x27;/app/incidencias/nueva&#x27;]);
+  }
+
+  /** Exporta en CSV el listado filtrado que se está viendo. */
+  exportarCsv(): void {
+    this.exportService.exportarCsv(this.filtradas(), this.nombreInforme());
+  }
+
+  /** Exporta en PDF el listado filtrado que se está viendo. */
+  exportarPdf(): void {
+    this.exportService.exportarPdf(this.filtradas(), this.titulo(), this.nombreInforme());
+  }
+
+  /** Carga las incidencias que corresponden al rol de la sesión. */
+  private async cargar(): Promise&lt;void&gt; {
+    this.cargando.set(true);
+
+    try {
+      const usuario &#x3D; this.auth.usuario();
+      let incidencias: readonly Incidencia[] &#x3D; [];
+
+      if (this.esAdmin()) {
+        incidencias &#x3D; await this.sql.getIncidencias();
+      } else if (usuario) {
+        incidencias &#x3D; await this.sql.getIncidenciasDe(usuario.id);
+      }
+
+      this._incidencias.set(incidencias);
+    } catch {
+      this._incidencias.set([]);
+      await this.notificacion.error(&#x27;No se han podido cargar las incidencias.&#x27;);
+    } finally {
+      this.cargando.set(false);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;gi-page&quot;&gt;
+  &lt;div class&#x3D;&quot;gi-page__head&quot;&gt;
+    &lt;div&gt;
+      &lt;h1 class&#x3D;&quot;gi-page__title&quot;&gt;{{ titulo() }}&lt;/h1&gt;
+      &lt;p class&#x3D;&quot;gi-page__subtitle&quot;&gt;{{ subtitulo() }}&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;gi-page__actions gi-listado__acciones&quot;&gt;
+      &lt;ion-button class&#x3D;&quot;gi-btn&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;nueva()&quot;&gt;
+        &lt;ion-icon slot&#x3D;&quot;start&quot; name&#x3D;&quot;add-outline&quot; aria-hidden&#x3D;&quot;true&quot; /&gt;
+        Nueva incidencia
+      &lt;/ion-button&gt;
+
+      &lt;ion-button
+        class&#x3D;&quot;gi-btn gi-btn--outline&quot;
+        type&#x3D;&quot;button&quot;
+        [disabled]&#x3D;&quot;cargando() || filtradas().length &#x3D;&#x3D;&#x3D; 0&quot;
+        (click)&#x3D;&quot;exportarCsv()&quot;
+      &gt;
+        &lt;ion-icon slot&#x3D;&quot;start&quot; name&#x3D;&quot;download-outline&quot; aria-hidden&#x3D;&quot;true&quot; /&gt;
+        CSV
+      &lt;/ion-button&gt;
+
+      &lt;ion-button
+        class&#x3D;&quot;gi-btn gi-btn--outline&quot;
+        type&#x3D;&quot;button&quot;
+        [disabled]&#x3D;&quot;cargando() || filtradas().length &#x3D;&#x3D;&#x3D; 0&quot;
+        (click)&#x3D;&quot;exportarPdf()&quot;
+      &gt;
+        &lt;ion-icon slot&#x3D;&quot;start&quot; name&#x3D;&quot;document-text-outline&quot; aria-hidden&#x3D;&quot;true&quot; /&gt;
+        PDF
+      &lt;/ion-button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;section class&#x3D;&quot;gi-card&quot; aria-labelledby&#x3D;&quot;titulo-listado&quot;&gt;
+    &lt;div class&#x3D;&quot;gi-card__head&quot;&gt;
+      &lt;h2 id&#x3D;&quot;titulo-listado&quot; class&#x3D;&quot;gi-card__title&quot;&gt;Listado&lt;/h2&gt;
+    &lt;/div&gt;
+
+    &lt;ion-segment
+      class&#x3D;&quot;gi-segment&quot;
+      [value]&#x3D;&quot;filtro()&quot;
+      aria-label&#x3D;&quot;Filtrar las incidencias por estado&quot;
+      (ionChange)&#x3D;&quot;cambiarFiltro($event)&quot;
+    &gt;
+      @for (opcion of opciones; track opcion.valor) {
+        &lt;ion-segment-button class&#x3D;&quot;gi-segment__btn&quot; [value]&#x3D;&quot;opcion.valor&quot;&gt;
+          &lt;ion-label&gt;{{ opcion.etiqueta }}&lt;/ion-label&gt;
+        &lt;/ion-segment-button&gt;
+      }
+    &lt;/ion-segment&gt;
+
+    @if (cargando()) {
+      &lt;div class&#x3D;&quot;gi-empty&quot; role&#x3D;&quot;status&quot;&gt;
+        &lt;ion-spinner name&#x3D;&quot;dots&quot; aria-hidden&#x3D;&quot;true&quot; /&gt;
+        &lt;p&gt;Cargando incidencias…&lt;/p&gt;
+      &lt;/div&gt;
+    } @else if (filtradas().length &#x3D;&#x3D;&#x3D; 0) {
+      &lt;div class&#x3D;&quot;gi-empty&quot; role&#x3D;&quot;status&quot;&gt;
+        &lt;ion-icon name&#x3D;&quot;file-tray-outline&quot; aria-hidden&#x3D;&quot;true&quot; /&gt;
+        &lt;p&gt;{{ mensajeVacio() }}&lt;/p&gt;
+        &lt;ion-button class&#x3D;&quot;gi-btn gi-btn--sm&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;nueva()&quot;&gt;
+          &lt;ion-icon slot&#x3D;&quot;start&quot; name&#x3D;&quot;add-outline&quot; aria-hidden&#x3D;&quot;true&quot; /&gt;
+          Registrar una incidencia
+        &lt;/ion-button&gt;
+      &lt;/div&gt;
+    } @else {
+      &lt;app-data-table
+        [incidencias]&#x3D;&quot;filtradas()&quot;
+        [mostrarSolicitante]&#x3D;&quot;esAdmin()&quot;
+        (ver)&#x3D;&quot;abrirDetalle($event)&quot;
+      /&gt;
+    }
+  &lt;/section&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./listado.page.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">:host {
+  display: block;
+}
+
+/* Espaciado del estado vacío y ancho de lectura cómodo. */
+.gi-empty p {
+  max-width: 44ch;
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+.gi-empty ion-button {
+  margin-top: 6px;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="gi-page">  <div class="gi-page__head">    <div>      <h1 class="gi-page__title">{{ titulo() }}</h1>      <p class="gi-page__subtitle">{{ subtitulo() }}</p>    </div>    <div class="gi-page__actions gi-listado__acciones">      <ion-button class="gi-btn" type="button" (click)="nueva()">        <ion-icon slot="start" name="add-outline" aria-hidden="true" />        Nueva incidencia      </ion-button>      <ion-button        class="gi-btn gi-btn--outline"        type="button"        [disabled]="cargando() || filtradas().length === 0"        (click)="exportarCsv()"      >        <ion-icon slot="start" name="download-outline" aria-hidden="true" />        CSV      </ion-button>      <ion-button        class="gi-btn gi-btn--outline"        type="button"        [disabled]="cargando() || filtradas().length === 0"        (click)="exportarPdf()"      >        <ion-icon slot="start" name="document-text-outline" aria-hidden="true" />        PDF      </ion-button>    </div>  </div>  <section class="gi-card" aria-labelledby="titulo-listado">    <div class="gi-card__head">      <h2 id="titulo-listado" class="gi-card__title">Listado</h2>    </div>    <ion-segment      class="gi-segment"      [value]="filtro()"      aria-label="Filtrar las incidencias por estado"      (ionChange)="cambiarFiltro($event)"    >      @for (opcion of opciones; track opcion.valor) {        <ion-segment-button class="gi-segment__btn" [value]="opcion.valor">          <ion-label>{{ opcion.etiqueta }}</ion-label>        </ion-segment-button>      }    </ion-segment>    @if (cargando()) {      <div class="gi-empty" role="status">        <ion-spinner name="dots" aria-hidden="true" />        <p>Cargando incidencias…</p>      </div>    } @else if (filtradas().length === 0) {      <div class="gi-empty" role="status">        <ion-icon name="file-tray-outline" aria-hidden="true" />        <p>{{ mensajeVacio() }}</p>        <ion-button class="gi-btn gi-btn--sm" type="button" (click)="nueva()">          <ion-icon slot="start" name="add-outline" aria-hidden="true" />          Registrar una incidencia        </ion-button>      </div>    } @else {      <app-data-table        [incidencias]="filtradas()"        [mostrarSolicitante]="esAdmin()"        (ver)="abrirDetalle($event)"      />    }  </section></div></div>'
+    var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'AyudaPage', 'selector': 'app-ayuda'},{'name': 'BrandPanelComponent', 'selector': 'app-brand-panel'},{'name': 'CampoComponent', 'selector': 'app-campo'},{'name': 'DashboardPage', 'selector': 'app-dashboard'},{'name': 'DataTableComponent', 'selector': 'app-data-table'},{'name': 'DetallePage', 'selector': 'app-detalle'},{'name': 'GraficoEstadosComponent', 'selector': 'app-grafico-estados'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ListadoPage', 'selector': 'app-listado'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'NuevaPage', 'selector': 'app-nueva'},{'name': 'RegistroPage', 'selector': 'app-registro'},{'name': 'ShellComponent', 'selector': 'app-shell'},{'name': 'StatCardComponent', 'selector': 'app-stat-card'},{'name': 'TabBarComponent', 'selector': 'app-tabbar'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ListadoPage'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ListadoPage.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

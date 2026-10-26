@@ -1,0 +1,544 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Gestor de Incidencias · DI 0488</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+        <link rel="stylesheet" href="./styles/readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">Gestor de Incidencias · DI 0488</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content readme">
+                   <div class="content-data">
+
+
+<h1>Gestor de Incidencias</h1>
+<p>Aplicación web (y app híbrida) para <strong>registrar, seguir y resolver las incidencias técnicas de un
+centro educativo</strong>: desde un proyector que no enciende hasta una licencia de software caducada.
+Proyecto de entrega del <strong>módulo DI 0488</strong> del Ciclo Formativo de Grado Superior en Desarrollo de
+Aplicaciones Multiplataforma (DAM), construido con <strong>Angular 22</strong> e <strong>Ionic 9</strong>.</p>
+<p>La interfaz está en español, se adapta a escritorio y móvil y replica la maqueta de la entrega:
+cabecera oscura, tarjetas blancas con esquinas redondeadas, panel con gráfico de estados y barra de
+navegación inferior.</p>
+<blockquote>
+<p><strong>Aviso rápido:</strong> todos los usuarios, incidencias y actividad son <strong>datos ficticios</strong> y viven en
+memoria. No hay backend ni base de datos real. Consulta el
+<a href="#aviso-sobre-los-datos">aviso sobre los datos</a>.</p>
+</blockquote>
+<p>No hay una demo publicada en Internet: la aplicación se ejecuta en local siguiendo los pasos de
+<a href="#puesta-en-marcha">Puesta en marcha</a>.</p>
+<h2>Índice</h2>
+<ul>
+<li><a href="#caracter%C3%ADsticas">Características</a></li>
+<li><a href="#stack-t%C3%A9cnico">Stack técnico</a></li>
+<li><a href="#puesta-en-marcha">Puesta en marcha</a></li>
+<li><a href="#scripts-disponibles">Scripts disponibles</a></li>
+<li><a href="#credenciales-de-prueba">Credenciales de prueba</a></li>
+<li><a href="#roles-y-permisos">Roles y permisos</a></li>
+<li><a href="#rutas-de-la-aplicaci%C3%B3n">Rutas de la aplicación</a></li>
+<li><a href="#estructura-del-proyecto">Estructura del proyecto</a></li>
+<li><a href="#arquitectura-de-datos-simulados">Arquitectura de datos simulados</a></li>
+<li><a href="#calidad-del-c%C3%B3digo">Calidad del código</a></li>
+<li><a href="#despliegue">Despliegue</a></li>
+<li><a href="#flujo-de-trabajo-con-git">Flujo de trabajo con Git</a></li>
+<li><a href="#autor">Autor</a></li>
+<li><a href="#aviso-sobre-los-datos">Aviso sobre los datos</a></li>
+</ul>
+<h2>Características</h2>
+<ul>
+<li><strong>Acceso y registro</strong>: inicio de sesión con validación en vivo y cuentas de prueba, y registro de
+nuevas cuentas con comprobación asíncrona de que el correo no esté repetido.</li>
+<li><strong>Gestión de incidencias</strong>: alta guiada (título, categoría, prioridad y descripción), listado
+filtrable por estado y pantalla de detalle con el historial de fechas y el solicitante.</li>
+<li><strong>Permisos por rol</strong>: el usuario ve y exporta solo sus incidencias; el administrador ve las de todo
+el centro y puede cambiarlas de estado.</li>
+<li><strong>Panel de administración</strong>: cuatro tarjetas de resumen que filtran la tabla, gráfico de barras con
+Chart.js y actividad del sistema en tiempo real.</li>
+<li><strong>Informes</strong>: exportación a <strong>CSV</strong> (compatible con Excel) y a <strong>PDF</strong> maquetado, tanto del listado
+filtrado como de una incidencia concreta.</li>
+<li><strong>Ayuda integrada</strong>: manual de uso dentro de la propia aplicación, con credenciales de prueba,
+explicación de los estados y tabla de permisos.</li>
+<li><strong>PWA y app nativa</strong>: compilación de producción instalable con <em>service worker</em> y configuración de
+Capacitor lista para empaquetar la misma base de código en Android e iOS.</li>
+<li><strong>Accesibilidad</strong>: HTML semántico, jerarquía de encabezados, tablas con <code>&lt;caption&gt;</code> y <code>scope</code>,
+<code>aria-live</code> en los mensajes, enlace «saltar al contenido» y foco visible.</li>
+</ul>
+<h2>Stack técnico</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Tecnología</th><th>Versión</th><th>Para qué se usa</th></tr>
+</thead>
+<tbody>
+<tr><td>Angular</td><td>22.2</td><td>Framework de la SPA: componentes standalone, <em>signals</em>, rutas con carga perezosa</td></tr>
+<tr><td>Ionic</td><td>9.0</td><td>Componentes de interfaz (modo Material): cabecera, botones, toasts, segmentos</td></tr>
+<tr><td>TypeScript</td><td>6.0</td><td>Lenguaje base, con <code>strict</code> y <code>strictTemplates</code></td></tr>
+<tr><td>RxJS</td><td>7.8</td><td>Flujos del feed de actividad y de la validación asíncrona</td></tr>
+<tr><td>Chart.js</td><td>4.6</td><td>Gráfico de barras de incidencias por estado del panel</td></tr>
+<tr><td>jsPDF + jspdf-autotable</td><td>4.2 / 5.0</td><td>Generación de los informes PDF en el navegador</td></tr>
+<tr><td>Angular Service Worker</td><td>22.2</td><td>Soporte PWA: caché e instalación de la compilación de producción</td></tr>
+<tr><td>Capacitor</td><td>8.5</td><td>Empaquetado de la aplicación como app nativa de Android e iOS</td></tr>
+<tr><td>Sass</td><td>—</td><td>Tokens de diseño y estilos de los componentes</td></tr>
+<tr><td>Vitest + jsdom</td><td>5.0 / 30</td><td>Pruebas unitarias de servicios, guards y validadores</td></tr>
+<tr><td>ESLint + angular-eslint</td><td>10 / 22</td><td>Análisis estático del TypeScript y de las plantillas</td></tr>
+<tr><td>Compodoc</td><td>2.0</td><td>Documentación generada del código</td></tr>
+<tr><td>Prettier</td><td>3.8</td><td>Formato uniforme de ficheros</td></tr>
+</tbody>
+</table>
+<h2>Puesta en marcha</h2>
+<p>Requisitos:</p>
+<ul>
+<li><strong>Node.js 22.22.3 o superior</strong> (también 24.15+ o 26+); el proyecto se ha desarrollado con Node
+24.21 y npm 11.4.</li>
+<li><strong>npm 8 o superior</strong> (el proyecto fija npm 11.4.1 en <code>package.json</code>).</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># 1. Instala las dependencias
+npm install
+
+# 2. Arranca el servidor de desarrollo
+npm start</code></pre></div><p>La aplicación queda disponible en <strong><a href="http://localhost:4200">http://localhost:4200</a></strong>. El servidor recarga la página
+automáticamente al guardar cambios.</p>
+<p>Para compilar y comprobar tipos y plantillas antes de entregar:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># Compilación de producción; el resultado queda en www/
+npm run build
+
+# Compilación de desarrollo en modo vigilancia (sin optimizar)
+npm run watch</code></pre></div><p>La carpeta <code>www/</code> es un sitio estático, pero el enrutado es de una SPA: al servirla hay que redirigir
+las rutas desconocidas a <code>index.html</code>.</p>
+<h2>Scripts disponibles</h2>
+<p>Todos los scripts están definidos en <code>package.json</code>:</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Script</th><th>Qué hace</th></tr>
+</thead>
+<tbody>
+<tr><td><code>npm start</code></td><td>Servidor de desarrollo (<code>ng serve</code>) en <a href="http://localhost:4200">http://localhost:4200</a></td></tr>
+<tr><td><code>npm run serve</code></td><td>Alias de <code>npm start</code></td></tr>
+<tr><td><code>npm run build</code></td><td>Compilación de producción con optimización, service worker y presupuestos</td></tr>
+<tr><td><code>npm run watch</code></td><td>Compilación de desarrollo en modo vigilancia</td></tr>
+<tr><td><code>npm test</code></td><td>Pruebas unitarias en modo vigilancia (Vitest + jsdom)</td></tr>
+<tr><td><code>npm run test:ci</code></td><td>Pruebas unitarias en una sola pasada (configuración <code>ci</code> de <code>angular.json</code>)</td></tr>
+<tr><td><code>npm run lint</code></td><td>ESLint sobre el TypeScript y las plantillas</td></tr>
+<tr><td><code>npm run lint:fix</code></td><td>ESLint corrigiendo lo que sea corregible automáticamente</td></tr>
+<tr><td><code>npm run format</code></td><td>Prettier sobre <code>src/**</code></td></tr>
+<tr><td><code>npm run docs</code></td><td>Genera la documentación de Compodoc en <code>docs/</code></td></tr>
+<tr><td><code>npm run docs:serve</code></td><td>Genera la documentación y la sirve en el navegador</td></tr>
+<tr><td><code>npm run cap:sync</code></td><td>Sincroniza la compilación web con los proyectos nativos de Capacitor</td></tr>
+<tr><td><code>npm run cap:android</code></td><td>Abre el proyecto de Android en Android Studio</td></tr>
+<tr><td><code>npm run cap:ios</code></td><td>Abre el proyecto de iOS en Xcode</td></tr>
+</tbody>
+</table>
+<h2>Credenciales de prueba</h2>
+<p>La aplicación arranca con tres cuentas ya creadas. Para entrar basta con escribir el correo y la
+contraseña; las dos cuentas principales también se pueden rellenar con un clic en <strong>Usar</strong>, en la
+pantalla de acceso:</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Rol</th><th>Correo</th><th>Contraseña</th><th>Nombre en los datos de ejemplo</th></tr>
+</thead>
+<tbody>
+<tr><td>Administrador</td><td><code>admin@centro.es</code></td><td><code>Admin123</code></td><td>Ana Admin</td></tr>
+<tr><td>Usuario</td><td><code>usuario@centro.es</code></td><td><code>Usuario123</code></td><td>Luis Usuario</td></tr>
+<tr><td>Administrador</td><td><code>maria@centro.es</code></td><td><code>Maria123</code></td><td>María Técnica</td></tr>
+</tbody>
+</table>
+<blockquote>
+<p>Las cuentas creadas desde la pantalla de registro también funcionan durante la sesión, pero se
+pierden al recargar porque se guardan en memoria.</p>
+</blockquote>
+<h2>Roles y permisos</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Acción</th><th>Usuario</th><th>Administrador</th></tr>
+</thead>
+<tbody>
+<tr><td>Iniciar y cerrar sesión</td><td>Sí</td><td>Sí</td></tr>
+<tr><td>Crear una incidencia</td><td>Sí</td><td>Sí</td></tr>
+<tr><td>Ver todas las incidencias del centro</td><td>No, solo las suyas</td><td>Sí</td></tr>
+<tr><td>Cambiar el estado de una incidencia</td><td>No</td><td>Sí</td></tr>
+<tr><td>Ver el panel con el gráfico de estados</td><td>No</td><td>Sí</td></tr>
+<tr><td>Exportar el listado a CSV o PDF</td><td>Sí, sus incidencias</td><td>Sí, todas</td></tr>
+</tbody>
+</table>
+<p>El panel está protegido por <code>adminGuard</code>: si una cuenta de usuario escribe <code>/app/panel</code>, la
+aplicación la devuelve al listado. En el listado, la columna «Solicitante» solo aparece para el
+administrador.</p>
+<h2>Rutas de la aplicación</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Ruta</th><th>Pantalla</th><th>Protección</th><th>Descripción</th></tr>
+</thead>
+<tbody>
+<tr><td><code>/</code></td><td>—</td><td>—</td><td>Redirige a <code>/app</code></td></tr>
+<tr><td><code>/login</code></td><td><code>LoginPage</code></td><td><code>guestGuard</code></td><td>Acceso con las credenciales de prueba</td></tr>
+<tr><td><code>/registro</code></td><td><code>RegistroPage</code></td><td><code>guestGuard</code></td><td>Creación de una cuenta nueva</td></tr>
+<tr><td><code>/app</code></td><td><code>ShellComponent</code></td><td><code>authGuard</code></td><td>Cabecera + contenido + barra de navegación</td></tr>
+<tr><td><code>/app/panel</code></td><td><code>DashboardPage</code></td><td><code>adminGuard</code></td><td>Panel de administración (solo administradores)</td></tr>
+<tr><td><code>/app/incidencias</code></td><td><code>ListadoPage</code></td><td>sesión</td><td>Listado de incidencias del centro o del usuario</td></tr>
+<tr><td><code>/app/incidencias/nueva</code></td><td><code>NuevaPage</code></td><td>sesión</td><td>Formulario de alta de una incidencia</td></tr>
+<tr><td><code>/app/incidencias/:codigo</code></td><td><code>DetallePage</code></td><td>sesión</td><td>Detalle, cambio de estado y exportación individual</td></tr>
+<tr><td><code>/app/ayuda</code></td><td><code>AyudaPage</code></td><td>sesión</td><td>Manual de uso de la aplicación</td></tr>
+</tbody>
+</table>
+<h2>Estructura del proyecto</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-text">gestor-incidencias/
+├── src/
+│   ├── app/
+│   │   ├── core/                     # Lógica independiente de la interfaz
+│   │   │   ├── data/seed.ts          # Usuarios, incidencias y actividad iniciales
+│   │   │   ├── guards/guards.ts      # authGuard, adminGuard y guestGuard
+│   │   │   ├── models/               # Usuario, Sesion, Incidencia, Actividad, Estadisticas…
+│   │   │   ├── services/             # SqlService, NosqlService, AuthService, ExportService…
+│   │   │   ├── utils/                # Etiquetas, fechas y almacenamiento local
+│   │   │   └── validators/           # Contraseña segura, correo disponible…
+│   │   ├── pages/
+│   │   │   ├── auth/                 # login y registro
+│   │   │   ├── dashboard/            # panel de administración con Chart.js
+│   │   │   ├── incidencias/          # listado, nueva y detalle
+│   │   │   ├── ayuda/                # manual de uso
+│   │   │   └── shell/                # marco de la zona autenticada
+│   │   ├── shared/components/        # header, tabbar, brand-panel, stat-card, data-table, campo
+│   │   ├── app.config.ts             # Providers: Ionic (md), router y service worker
+│   │   ├── app.routes.ts             # Rutas con carga perezosa
+│   │   └── app.ts                    # Componente raíz
+│   ├── theme/variables.scss          # Tema de Ionic (colores y tipografía)
+│   ├── styles.scss                   # Tokens de diseño y clases globales «gi-*»
+│   ├── index.html                    # Metadatos, manifest e idioma español
+│   ├── main.ts                       # Arranque de Angular
+│   └── test-setup.ts                 # Polyfills de jsdom para las pruebas
+├── public/                           # manifest.webmanifest, favicon e iconos de la PWA
+├── angular.json                      # Configuración de build, serve y test
+├── capacitor.config.ts               # appId, nombre y webDir de la app híbrida
+├── eslint.config.mjs                 # ESLint (flat config) con reglas de Angular y accesibilidad
+├── ionic.config.json                 # Proyecto Ionic standalone con integración Capacitor
+├── ngsw-config.json                  # Caché de la PWA
+├── tsconfig.doc.json                 # Fichero de TypeScript para Compodoc
+├── tsconfig.json                     # Opciones estrictas y alias &#64;core, &#64;shared, &#64;pages
+└── package.json</code></pre></div><p>Las carpetas generadas (<code>www/</code>, <code>docs/</code>, <code>.angular/</code>, <code>node_modules/</code>) no forman parte del código
+fuente; <code>www/</code> es la salida de la compilación y <code>docs/</code> la de Compodoc.</p>
+<h2>Arquitectura de datos simulados</h2>
+<p>No hay backend. Toda la persistencia es una <strong>simulación didáctica en memoria</strong> que se inicializa
+desde <code>src/app/core/data/seed.ts</code> (3 usuarios, 12 incidencias y 3 eventos de actividad):</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-text">Páginas (standalone, OnPush)
+   │ inject()
+   ▼
+AuthService ──► SqlService ──► seed.ts        (usuarios e incidencias)
+   │               │
+   │               └──► NosqlService           (feed de actividad, RxJS)
+   │
+   └──► localStorage («gi.sesion»)
+
+Páginas ──► ExportService ──► jsPDF / CSV     (informes en el navegador)</code></pre></div><ul>
+<li><strong><code>SqlService</code></strong> simula una base de datos relacional con dos tablas, <code>usuarios</code> e <code>incidencias</code>.
+Todas sus operaciones devuelven <code>Promise</code> y esperan un retardo de 160 ms para que la interfaz tenga
+que gestionar estados de carga, como ocurriría con un servidor real. Devuelve copias defensivas de
+los registros y ordena las incidencias por código. Las altas nuevas reciben códigos correlativos a
+partir de <code>INC-1013</code>.</li>
+<li><strong><code>NosqlService</code></strong> representa una colección de documentos de solo lectura: el feed de actividad.
+Se implementa con un <code>BehaviorSubject</code> de RxJS (<code>actividad$</code>), de modo que cada cambio de estado o
+alta aparece al instante en el panel.</li>
+<li><strong><code>AuthService</code></strong> guarda la sesión en un <code>signal</code> (<code>usuario</code>, <code>autenticado</code>, <code>esAdmin</code>, <code>nombre</code>,
+<code>iniciales</code>, <code>rutaInicio</code>) y la refleja en <code>localStorage</code> para sobrevivir a una recarga. Las
+credenciales se validan contra <code>SqlService</code>.</li>
+<li><strong><code>ExportService</code></strong> genera el CSV (UTF-8 con BOM y separador <code>;</code>) y los PDF con jsPDF y autoTable,
+directamente en el navegador.</li>
+<li><strong><code>NotificacionService</code></strong> centraliza los avisos emergentes de Ionic.</li>
+</ul>
+<p>Consecuencia importante: <strong>los cambios no se persisten</strong>. Al recargar la página vuelven los datos de
+ejemplo; lo único que se conserva es la sesión iniciada, que se borra al cerrar sesión.</p>
+<h2>Calidad del código</h2>
+<ul>
+<li><p><strong>Pruebas unitarias</strong> con Vitest y jsdom: <strong>11 pruebas en 5 ficheros</strong>, que cubren <code>SqlService</code>
+(acceso, correo disponible, alta y estadísticas), <code>AuthService</code> (sesión en el signal y en el
+almacenamiento), <code>ExportService</code> (CSV y lista vacía), los guards de ruta y los validadores
+(<code>emailExistsValidator</code> y <code>contrasenasCoinciden</code>). Se ejecutan con:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run test:ci</code></pre></div></li>
+<li><p><strong>ESLint 10</strong> con angular-eslint: reglas de TypeScript y de accesibilidad de plantillas,
+prohibición de <code>any</code> explícito y de <code>console.log</code> (<code>no-console</code>). Se ejecuta con:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run lint</code></pre></div></li>
+<li><p><strong>Prettier 3</strong> para el formato (<code>.prettierrc</code>, 100 columnas y comillas simples) y <strong>TypeScript
+estricto</strong> (<code>strict</code>, <code>strictTemplates</code>, <code>noImplicitReturns</code>…), con presupuestos de tamaño en
+<code>angular.json</code> para avisar si el <em>bundle</em> crece.</p>
+</li>
+<li><p><strong>Accesibilidad</strong>: estructura semántica, encabezados ordenados, tablas con <code>&lt;caption&gt;</code> y
+<code>scope</code>, textos alternativos y <code>aria-live</code> para los mensajes, foco visible y enlace «saltar al
+contenido». El objetivo es cumplir las pautas WCAG 2.1 AA.</p>
+</li>
+<li><p><strong>PWA y rendimiento</strong>: la compilación de producción registra un <em>service worker</em> con
+<code>ngsw-config.json</code>, carga perezosa de las pantallas y fuentes del sistema (sin peticiones
+externas), por lo que la aplicación se puede auditar con Lighthouse. No se publican puntuaciones
+porque dependen del dispositivo y de la red de cada prueba.</p>
+</li>
+<li><p><strong>Documentación</strong> con Compodoc:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run docs        # genera la documentación en docs/
+npm run docs:serve  # la genera y la abre en el navegador</code></pre></div></li>
+</ul>
+<h2>Despliegue</h2>
+<h3>Web (Vercel, Netlify o cualquier servidor estático)</h3>
+<ol>
+<li>Compila en producción con <code>npm run build</code>; el resultado queda en <code>www/</code>.</li>
+<li>Publica <code>www/</code> como sitio estático.</li>
+<li>Configura una reescritura de SPA: todas las rutas que no sean un fichero deben servir
+<code>index.html</code>. En Vercel basta con indicar <code>npm run build</code> como comando, <code>www</code> como directorio de
+salida y una reescritura de <code>/(.*)</code> a <code>/index.html</code>; en Netlify, un <code>_redirects</code> con
+<code>/* /index.html 200</code>.</li>
+<li>La PWA necesita <strong>HTTPS</strong> para que el <em>service worker</em> se registre (en <code>localhost</code> también
+funciona). En desarrollo el <em>service worker</em> está desactivado: solo se activa en la compilación de
+producción.</li>
+</ol>
+<h3>App nativa con Capacitor</h3>
+<p>El proyecto incluye las dependencias de Capacitor 8 y <code>capacitor.config.ts</code> ya configurado
+(<code>appId</code> <code>es.nebrija.gestorincidencias</code>, <code>appName</code> «Gestor de Incidencias» y <code>webDir</code> <code>www</code>):</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run build          # genera www/ que consumirá Capacitor
+npx cap add android    # solo la primera vez: crea el proyecto nativo
+npx cap add ios        # solo la primera vez (requiere macOS y Xcode)
+npm run cap:sync       # copia www/ y sincroniza los plugins
+npm run cap:android    # abre Android Studio
+npm run cap:ios        # abre Xcode</code></pre></div><p>Las carpetas nativas (<code>android/</code>, <code>ios/</code>) se generan con <code>cap add</code> y no forman parte del código
+fuente de la aplicación web. Para iOS hace falta un Mac con Xcode; para Android, Android Studio con
+un SDK instalado. <code>ionic.config.json</code> declara el proyecto como <em>standalone</em> con integración de
+Capacitor.</p>
+<h2>Flujo de trabajo con Git</h2>
+<p>El proyecto se organiza con una <strong>adaptación de Git Flow</strong>, el modelo de ramas habitual para el
+trabajo en equipo:</p>
+<ul>
+<li><code>main</code>: entregas estables y etiquetadas (<code>v1.0.0</code>).</li>
+<li><code>develop</code>: rama de integración de las funcionalidades terminadas.</li>
+<li><code>feature/*</code>: una rama por pantalla o bloque de trabajo (<code>feature/panel-dashboard</code>,
+<code>feature/alta-incidencias</code>, <code>feature/pantalla-ayuda</code>…).</li>
+<li><code>release/*</code>: preparación de una entrega (solo correcciones y documentación).</li>
+<li><code>hotfix/*</code>: correcciones urgentes que nacen de <code>main</code> y vuelven a <code>main</code> y a <code>develop</code>.</li>
+</ul>
+<p>Convenciones:</p>
+<ul>
+<li><strong>Commits</strong> con <em>Conventional Commits</em> y ámbito entre paréntesis: <code>feat(incidencias): añade el alta con validación en vivo</code>, <code>fix(auth): corrige el guard de administrador</code>,
+<code>docs(readme): documenta los scripts</code>, <code>test(servicios): cubre el alta de incidencias</code>.</li>
+<li><strong>Pull requests</strong> hacia <code>develop</code> con revisión de al menos otra persona y sin <em>warnings</em> de ESLint
+ni pruebas en rojo.</li>
+<li><strong>Etiquetas</strong> de versión (<code>v1.0.0</code>) en cada entrega.</li>
+</ul>
+<h2>Autor</h2>
+<p><strong>Nicolás San Marcos</strong> — proyecto académico del <strong>módulo DI 0488</strong> (Ciclo Formativo de Grado
+Superior en Desarrollo de Aplicaciones Multiplataforma).</p>
+<h2>Aviso sobre los datos</h2>
+<blockquote>
+<p><strong>Todos los datos de la aplicación son ficticios.</strong> Los usuarios, las incidencias, las fechas y la
+actividad están inventados para el ejercicio y viven únicamente en memoria.</p>
+</blockquote>
+<ul>
+<li>El estado inicial se carga en cada arranque desde <code>src/app/core/data/seed.ts</code>; la «base de datos»
+simulada de <code>src/app/core/services/sql.service.ts</code> no existe fuera del navegador.</li>
+<li>No se envía ninguna información a un servidor ni se guarda en disco. Lo único que persiste es la
+sesión en <code>localStorage</code> (clave <code>gi.sesion</code>), y se borra al cerrar sesión.</li>
+<li>Al recargar se pierden las cuentas registradas durante la sesión y los cambios de estado: vuelven
+las 3 cuentas y las 12 incidencias de ejemplo.</li>
+<li>El proyecto <strong>no debe usarse con datos reales</strong> de personas ni del centro en su estado actual: es
+una simulación didáctica.</li>
+</ul>
+<p>Las librerías de terceros utilizadas (Angular, Ionic, Chart.js, jsPDF, etc.) se distribuyen con
+licencias de código abierto (MIT en la mayoría de los casos); consulta el fichero <code>package.json</code>
+para ver el detalle de dependencias.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'readme';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

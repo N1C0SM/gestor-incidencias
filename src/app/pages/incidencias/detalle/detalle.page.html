@@ -1,0 +1,117 @@
+<div class="gi-page">
+  <a class="gi-link gi-detalle__volver" routerLink="/app/incidencias">
+    <ion-icon name="arrow-back-outline" aria-hidden="true" />
+    Volver al listado
+  </a>
+
+  @if (cargando()) {
+    <div class="gi-empty" role="status">
+      <ion-spinner name="dots" aria-hidden="true" />
+      <p>Cargando la incidencia…</p>
+    </div>
+  } @else {
+    @if (incidencia(); as inc) {
+      <header class="gi-detalle__cabecera">
+        <div>
+          <p class="gi-detalle__codigo">{{ inc.codigo }}</p>
+          <h1 class="gi-detalle__titulo">{{ inc.titulo }}</h1>
+        </div>
+
+        <div class="gi-detalle__pills">
+          <span [class]="'gi-pill gi-pill--' + inc.estado">
+            {{ ETIQUETA_ESTADO[inc.estado] }}
+          </span>
+          <span
+            [class]="'gi-pill gi-pill--prioridad-' + inc.prioridad"
+            [attr.aria-label]="'Prioridad ' + ETIQUETA_PRIORIDAD[inc.prioridad]"
+          >
+            Prioridad {{ ETIQUETA_PRIORIDAD[inc.prioridad] }}
+          </span>
+        </div>
+      </header>
+
+      <div class="gi-detalle">
+        <div class="gi-detalle__principal">
+          <section class="gi-card" aria-labelledby="titulo-descripcion">
+            <h2 id="titulo-descripcion" class="gi-card__title">Descripción</h2>
+            <p class="gi-detalle__descripcion">{{ inc.descripcion }}</p>
+
+            <dl class="gi-datos">
+              <div class="gi-datos__campo">
+                <dt>Categoría</dt>
+                <dd>{{ inc.categoria }}</dd>
+              </div>
+              <div class="gi-datos__campo">
+                <dt>Fecha de alta</dt>
+                <dd>{{ formatearFechaHora(inc.fecha) }}</dd>
+              </div>
+              <div class="gi-datos__campo">
+                <dt>Última actualización</dt>
+                <dd>{{ formatearFechaHora(inc.actualizadoEn) }}</dd>
+              </div>
+              <div class="gi-datos__campo">
+                <dt>Solicitante</dt>
+                <dd>{{ inc.solicitante }}</dd>
+              </div>
+            </dl>
+          </section>
+        </div>
+
+        <aside class="gi-detalle__lateral">
+          @if (esAdmin()) {
+            <section class="gi-card" aria-labelledby="titulo-estado">
+              <div class="gi-card__head">
+                <h2 id="titulo-estado" class="gi-card__title">Cambiar estado</h2>
+                @if (actualizando()) {
+                  <span class="visually-hidden" role="status">Actualizando el estado…</span>
+                  <ion-spinner name="dots" aria-hidden="true" />
+                }
+              </div>
+
+              <div class="gi-estado-form">
+                <div class="gi-estado-form__opciones">
+                  @for (estado of ESTADOS; track estado) {
+                    <button
+                      type="button"
+                      class="gi-estado-opcion"
+                      [class.gi-estado-opcion--activa]="inc.estado === estado"
+                      [attr.aria-pressed]="inc.estado === estado"
+                      [disabled]="actualizando()"
+                      (click)="cambiarEstado(estado)"
+                    >
+                      <span
+                        class="gi-estado-opcion__punto"
+                        [style.background]="COLOR_ESTADO[estado]"
+                        aria-hidden="true"
+                      ></span>
+                      {{ ETIQUETA_ESTADO[estado] }}
+                    </button>
+                  }
+                </div>
+
+                <p class="gi-nota">El cambio queda registrado en la actividad del centro.</p>
+              </div>
+            </section>
+          }
+
+          <section class="gi-card" aria-labelledby="titulo-informe">
+            <h2 id="titulo-informe" class="gi-card__title">Informe</h2>
+            <ion-button
+              class="gi-btn gi-btn--outline gi-btn--block gi-detalle__pdf"
+              type="button"
+              (click)="exportarPdf()"
+            >
+              <ion-icon slot="start" name="document-text-outline" aria-hidden="true" />
+              Exportar PDF
+            </ion-button>
+          </section>
+        </aside>
+      </div>
+    } @else {
+      <div class="gi-empty" role="status">
+        <ion-icon name="alert-circle-outline" aria-hidden="true" />
+        <p>No se ha encontrado la incidencia.</p>
+      </div>
+    }
+  }
+</div>

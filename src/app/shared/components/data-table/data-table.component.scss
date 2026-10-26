@@ -1,0 +1,18 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.gi-table__prioridad {
+  color: var(--gi-ink-soft);
+}
+
+.gi-table td.gi-table__accion {
+  text-align: right;
+}
+
+@media (max-width: 760px) {
+  .gi-table {
+    min-width: 560px;
+  }
+}

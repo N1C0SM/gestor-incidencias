@@ -1,0 +1,572 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Gestor de Incidencias · DI 0488</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Gestor de Incidencias · DI 0488</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  OpcionCampo</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/shared/components/campo/campo.component.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Opción de un campo de tipo <code>select</code>.</p>
+
+            </p>
+
+
+            </div>
+
+    <div class="tab-pane fade " id="api"><section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-3">
+                    <h6><b>Properties</b></h6>
+                </td>
+                <td class="col-md-9">
+                    <ul class="index-list">
+                        <li>
+                                <a href="#etiqueta" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">etiqueta</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#valor" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">valor</span>
+                                </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-properties">
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="etiqueta"></a>
+                                <span class="name "><b>etiqueta</b>
+                                    <a href="#etiqueta">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>etiqueta:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/shared/components/campo/campo.component.ts:16</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="valor"></a>
+                                <span class="name "><b>valor</b>
+                                    <a href="#valor">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>valor:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/shared/components/campo/campo.component.ts:15</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+    </section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  booleanAttribute,
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  forwardRef,
+  input,
+  signal,
+} from &#x27;@angular/core&#x27;;
+import { type ControlValueAccessor, NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
+import { IonIcon } from &#x27;@ionic/angular&#x27;;
+
+/** Opción de un campo de tipo &#x60;select&#x60;. */
+export interface OpcionCampo {
+  readonly valor: string;
+  readonly etiqueta: string;
+}
+
+/** Tipo de control que se pinta. */
+export type TipoCampo &#x3D;
+  | &#x27;text&#x27;
+  | &#x27;email&#x27;
+  | &#x27;password&#x27;
+  | &#x27;number&#x27;
+  | &#x27;date&#x27;
+  | &#x27;search&#x27;
+  | &#x27;textarea&#x27;
+  | &#x27;select&#x27;;
+
+let contadorCampos &#x3D; 0;
+
+/**
+ * Campo de formulario con etiqueta flotante, ayuda y mensaje de error.
+ *
+ * Implementa &#x60;ControlValueAccessor&#x60;, así que se integra con los formularios
+ * reactivos igual que un &#x60;input&#x60; nativo: &#x60;formControlName&#x60;, &#x60;formControl&#x60; o
+ * &#x60;ngModel&#x60;. La etiqueta queda siempre sobre el borde (patrón Material) y el
+ * error se anuncia con &#x60;role&#x3D;&quot;alert&quot;&#x60; para los lectores de pantalla.
+ */
+@Component({
+  selector: &#x27;app-campo&#x27;,
+  imports: [IonIcon],
+  templateUrl: &#x27;./campo.component.html&#x27;,
+  styleUrl: &#x27;./campo.component.scss&#x27;,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() &#x3D;&gt; CampoComponent),
+      multi: true,
+    },
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class CampoComponent implements ControlValueAccessor {
+  /** Identificador único del control (más sus descendientes de ayuda/error). */
+  readonly id &#x3D; &#x60;campo-${++contadorCampos}&#x60;;
+  readonly idAyuda &#x3D; &#x60;${this.id}-ayuda&#x60;;
+  readonly idError &#x3D; &#x60;${this.id}-error&#x60;;
+
+  /** Etiqueta visible del campo. */
+  readonly etiqueta &#x3D; input.required&lt;string&gt;();
+
+  /** Tipo de control. */
+  readonly tipo &#x3D; input&lt;TipoCampo&gt;(&#x27;text&#x27;);
+
+  /** Texto de ejemplo dentro del control. */
+  readonly placeholder &#x3D; input(&#x27;&#x27;);
+
+  /** Texto de ayuda bajo el control. */
+  readonly ayuda &#x3D; input(&#x27;&#x27;);
+
+  /** Mensaje de error a mostrar (o &#x60;null&#x60;). */
+  readonly error &#x3D; input&lt;string | null&gt;(null);
+
+  /** Opciones para &#x60;tipo &#x3D; &#x27;select&#x27;&#x60;. */
+  readonly opciones &#x3D; input&lt;readonly OpcionCampo[]&gt;([]);
+
+  /** Valor de &#x60;autocomplete&#x60; del navegador. */
+  readonly autocomplete &#x3D; input(&#x27;off&#x27;);
+
+  /** Marca el control como obligatorio para la validación nativa y ARIA. */
+  readonly requerido &#x3D; input(false, { transform: booleanAttribute });
+
+  /** Longitud máxima admitida. */
+  readonly maxlength &#x3D; input&lt;number | null&gt;(null);
+
+  /** Teclado que sugiere el dispositivo (&#x60;inputmode&#x60;). */
+  readonly inputmode &#x3D; input&lt;string | null&gt;(null);
+
+  /** Filas visibles cuando &#x60;tipo &#x3D; &#x27;textarea&#x27;&#x60;. */
+  readonly filas &#x3D; input(3);
+
+  /** Muestra el botón para ver u ocultar la contraseña. */
+  readonly revelable &#x3D; input(false, { transform: booleanAttribute });
+
+  /** Valor actual del control. */
+  private readonly valor &#x3D; signal(&#x27;&#x27;);
+
+  /** Estado deshabilitado gestionado por Angular Forms. */
+  private readonly deshabilitado &#x3D; signal(false);
+
+  /** Estado del botón «ver contraseña». */
+  private readonly claveVisible &#x3D; signal(false);
+
+  private alCambiar: (valor: string) &#x3D;&gt; void &#x3D; () &#x3D;&gt; undefined;
+  private alTocar: () &#x3D;&gt; void &#x3D; () &#x3D;&gt; undefined;
+
+  /** &#x60;true&#x60; cuando hay un mensaje de error que pintar. */
+  readonly mostrarError &#x3D; computed(() &#x3D;&gt; (this.error() ?? &#x27;&#x27;).length &gt; 0);
+
+  /** &#x60;true&#x60; para pintar un textarea. */
+  readonly esTextarea &#x3D; computed(() &#x3D;&gt; this.tipo() &#x3D;&#x3D;&#x3D; &#x27;textarea&#x27;);
+
+  /** &#x60;true&#x60; para pintar un select. */
+  readonly esSelect &#x3D; computed(() &#x3D;&gt; this.tipo() &#x3D;&#x3D;&#x3D; &#x27;select&#x27;);
+
+  /** &#x60;true&#x60; para pintar el botón de visibilidad de contraseña. */
+  readonly esPassword &#x3D; computed(() &#x3D;&gt; this.tipo() &#x3D;&#x3D;&#x3D; &#x27;password&#x27; &amp;&amp; this.revelable());
+
+  /** Tipo efectivo del input (cambia al revelar la contraseña). */
+  readonly tipoEfectivo &#x3D; computed(() &#x3D;&gt; {
+    if (this.tipo() &#x3D;&#x3D;&#x3D; &#x27;password&#x27; &amp;&amp; this.claveVisible()) {
+      return &#x27;text&#x27;;
+    }
+    return this.tipo() &#x3D;&#x3D;&#x3D; &#x27;textarea&#x27; || this.tipo() &#x3D;&#x3D;&#x3D; &#x27;select&#x27; ? &#x27;text&#x27; : this.tipo();
+  });
+
+  /** Texto para &#x60;aria-label&#x60; del botón de contraseña. */
+  readonly etiquetaBotonClave &#x3D; computed(() &#x3D;&gt;
+    this.claveVisible() ? &#x27;Ocultar la contraseña&#x27; : &#x27;Mostrar la contraseña&#x27;,
+  );
+
+  /** Ids de los textos asociados al control (&#x60;aria-describedby&#x60;). */
+  readonly descritoPor &#x3D; computed(() &#x3D;&gt; {
+    const ids: string[] &#x3D; [];
+    if ((this.ayuda().length &gt; 0 &amp;&amp; !this.mostrarError()) &#x3D;&#x3D;&#x3D; true) {
+      ids.push(this.idAyuda);
+    }
+    if (this.mostrarError()) {
+      ids.push(this.idError);
+    }
+    return ids.length &gt; 0 ? ids.join(&#x27; &#x27;) : null;
+  });
+
+  /** Valor actual, para el enlace con la plantilla. */
+  readonly valorActual &#x3D; this.valor.asReadonly();
+
+  /** Estado deshabilitado, para la plantilla. */
+  readonly estaDeshabilitado &#x3D; this.deshabilitado.asReadonly();
+
+  /** Estado del botón de contraseña. */
+  readonly claveALaVista &#x3D; this.claveVisible.asReadonly();
+
+  /** Escritura desde Angular Forms. */
+  writeValue(valor: string | null): void {
+    this.valor.set(valor ?? &#x27;&#x27;);
+  }
+
+  /** Registro del callback de cambio. */
+  registerOnChange(fn: (valor: string) &#x3D;&gt; void): void {
+    this.alCambiar &#x3D; fn;
+  }
+
+  /** Registro del callback de «tocado». */
+  registerOnTouched(fn: () &#x3D;&gt; void): void {
+    this.alTocar &#x3D; fn;
+  }
+
+  /** Angular Forms deshabilita o habilita el control. */
+  setDisabledState(deshabilitado: boolean): void {
+    this.deshabilitado.set(deshabilitado);
+  }
+
+  /** Propaga el valor al formulario en cada pulsación. */
+  alEscribir(evento: Event): void {
+    const control &#x3D; evento.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+    this.valor.set(control.value);
+    this.alCambiar(control.value);
+  }
+
+  /** Marca el control como tocado al salir. */
+  alSalir(): void {
+    this.alTocar();
+  }
+
+  /** Alterna la visibilidad de la contraseña. */
+  alternarClave(): void {
+    this.claveVisible.update((visible) &#x3D;&gt; !visible);
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'OpcionCampo.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

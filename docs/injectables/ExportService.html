@@ -1,0 +1,812 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Gestor de Incidencias · DI 0488</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Gestor de Incidencias · DI 0488</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >ExportService</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/core/services/export.service.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Exportación de informes.</p>
+<ul>
+<li>CSV: compatible con Excel (UTF-8 con BOM y separador <code>;</code>).</li>
+<li>PDF: maquetado con jsPDF y autoTable, con cabecera, pie y numeración.</li>
+</ul>
+
+            </p>
+
+
+        <section data-compodoc="block-metadata">
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover metadata">
+                <tbody>
+                    <tr>
+                        <td class="col-md-3">providedIn</td>
+                        <td class="col-md-9"><code>root</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+            </div>
+
+    <div class="tab-pane fade " id="api">
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#exportarCsv" >exportarCsv</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#exportarIncidenciaPdf" >exportarIncidenciaPdf</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#exportarPdf" >exportarPdf</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportarCsv"></a>
+                    <span class="name">
+                        <span ><b>exportarCsv</b></span>
+                        <a href="#exportarCsv"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exportarCsv(incidencias: {}, nombre: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/app/core/services/export.service.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Genera y descarga un CSV con el listado recibido.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>incidencias</td>
+                                            <td>
+                                                        <code>{}</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>nombre</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>&#x27;incidencias&#x27;</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportarIncidenciaPdf"></a>
+                    <span class="name">
+                        <span ><b>exportarIncidenciaPdf</b></span>
+                        <a href="#exportarIncidenciaPdf"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exportarIncidenciaPdf(incidencia: <a href="../interfaces/Incidencia.html" target="_self">Incidencia</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="147"
+                                    class="link-to-prism">src/app/core/services/export.service.ts:147</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Resumen de una incidencia concreta en PDF (detalle).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>incidencia</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Incidencia.html" target="_self" >Incidencia</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportarPdf"></a>
+                    <span class="name">
+                        <span ><b>exportarPdf</b></span>
+                        <a href="#exportarPdf"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exportarPdf(incidencias: {}, titulo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, nombre: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/core/services/export.service.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Genera y descarga un PDF maquetado con el listado recibido.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>incidencias</td>
+                                            <td>
+                                                        <code>{}</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>titulo</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>&#x27;Listado de incidencias&#x27;</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>nombre</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>&#x27;incidencias&#x27;</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { jsPDF } from &#x27;jspdf&#x27;;
+import autoTable from &#x27;jspdf-autotable&#x27;;
+
+import type { Incidencia } from &#x27;../models&#x27;;
+import {
+  ETIQUETA_ESTADO,
+  ETIQUETA_PRIORIDAD,
+  formatearFecha,
+  formatearFechaHora,
+} from &#x27;../utils/etiquetas&#x27;;
+
+/** Marca de orden de bytes: hace que Excel abra el CSV como UTF-8. */
+const BOM &#x3D; &#x27;\uFEFF&#x27;;
+
+/** Cabeceras del CSV, en el mismo orden que las columnas de la tabla. */
+const CABECERAS &#x3D; [
+  &#x27;Código&#x27;,
+  &#x27;Título&#x27;,
+  &#x27;Estado&#x27;,
+  &#x27;Prioridad&#x27;,
+  &#x27;Categoría&#x27;,
+  &#x27;Fecha&#x27;,
+  &#x27;Solicitante&#x27;,
+  &#x27;Descripción&#x27;,
+] as const;
+
+/**
+ * Exportación de informes.
+ *
+ * - CSV: compatible con Excel (UTF-8 con BOM y separador &#x60;;&#x60;).
+ * - PDF: maquetado con jsPDF y autoTable, con cabecera, pie y numeración.
+ */
+@Injectable({ providedIn: &#x27;root&#x27; })
+export class ExportService {
+  /** Genera y descarga un CSV con el listado recibido. */
+  exportarCsv(incidencias: readonly Incidencia[], nombre &#x3D; &#x27;incidencias&#x27;): void {
+    const filas &#x3D; incidencias.map((incidencia) &#x3D;&gt; [
+      incidencia.codigo,
+      incidencia.titulo,
+      ETIQUETA_ESTADO[incidencia.estado],
+      ETIQUETA_PRIORIDAD[incidencia.prioridad],
+      incidencia.categoria,
+      formatearFecha(incidencia.fecha),
+      incidencia.solicitante,
+      incidencia.descripcion,
+    ]);
+
+    const contenido &#x3D; [CABECERAS as readonly string[], ...filas]
+      .map((fila) &#x3D;&gt; fila.map(escaparCelda).join(&#x27;;&#x27;))
+      .join(&#x27;\r\n&#x27;);
+
+    descargar(
+      new Blob([BOM + contenido], { type: &#x27;text/csv;charset&#x3D;utf-8;&#x27; }),
+      &#x60;${nombre}-${hoy()}.csv&#x60;,
+    );
+  }
+
+  /** Genera y descarga un PDF maquetado con el listado recibido. */
+  exportarPdf(
+    incidencias: readonly Incidencia[],
+    titulo &#x3D; &#x27;Listado de incidencias&#x27;,
+    nombre &#x3D; &#x27;incidencias&#x27;,
+  ): void {
+    const doc &#x3D; new jsPDF({ orientation: &#x27;landscape&#x27;, unit: &#x27;mm&#x27;, format: &#x27;a4&#x27; });
+    const anchoPagina &#x3D; doc.internal.pageSize.getWidth();
+
+    // Cabecera del informe.
+    doc.setFont(&#x27;helvetica&#x27;, &#x27;bold&#x27;);
+    doc.setFontSize(16);
+    doc.setTextColor(15, 23, 42);
+    doc.text(titulo, 14, 16);
+
+    doc.setFont(&#x27;helvetica&#x27;, &#x27;normal&#x27;);
+    doc.setFontSize(9.5);
+    doc.setTextColor(100, 116, 139);
+    doc.text(&#x27;Gestor de Incidencias · Ciclo DAM · Módulo DI 0488&#x27;, 14, 22);
+
+    const hoyTexto &#x3D; new Date();
+    const fechaInforme &#x3D; &#x60;${formatearFecha(hoyTexto.toISOString())} · ${String(
+      hoyTexto.getHours(),
+    ).padStart(2, &#x27;0&#x27;)}:${String(hoyTexto.getMinutes()).padStart(2, &#x27;0&#x27;)}&#x60;;
+    doc.text(&#x60;Generado el ${fechaInforme}&#x60;, anchoPagina - 14, 16, { align: &#x27;right&#x27; });
+    doc.text(&#x60;${incidencias.length} incidencias&#x60;, anchoPagina - 14, 22, { align: &#x27;right&#x27; });
+
+    autoTable(doc, {
+      startY: 28,
+      head: [[&#x27;Código&#x27;, &#x27;Título&#x27;, &#x27;Estado&#x27;, &#x27;Prioridad&#x27;, &#x27;Categoría&#x27;, &#x27;Fecha&#x27;, &#x27;Solicitante&#x27;]],
+      body: incidencias.map((incidencia) &#x3D;&gt; [
+        incidencia.codigo,
+        incidencia.titulo,
+        ETIQUETA_ESTADO[incidencia.estado],
+        ETIQUETA_PRIORIDAD[incidencia.prioridad],
+        incidencia.categoria,
+        formatearFecha(incidencia.fecha),
+        incidencia.solicitante,
+      ]),
+      styles: {
+        font: &#x27;helvetica&#x27;,
+        fontSize: 8.5,
+        cellPadding: 2.6,
+        textColor: [51, 65, 85],
+        lineColor: [219, 227, 238],
+        lineWidth: 0.1,
+      },
+      headStyles: {
+        fillColor: [15, 23, 42],
+        textColor: [255, 255, 255],
+        fontStyle: &#x27;bold&#x27;,
+        fontSize: 8.5,
+      },
+      alternateRowStyles: { fillColor: [248, 250, 252] },
+      columnStyles: {
+        0: { cellWidth: 22 },
+        1: { cellWidth: 82 },
+        2: { cellWidth: 24 },
+        3: { cellWidth: 22 },
+        4: { cellWidth: 28 },
+        5: { cellWidth: 26 },
+        6: { cellWidth: 32 },
+      },
+      margin: { left: 14, right: 14, top: 28 },
+      didDrawPage: () &#x3D;&gt; {
+        const altoPagina &#x3D; doc.internal.pageSize.getHeight();
+        doc.setFontSize(8);
+        doc.setTextColor(148, 163, 184);
+        doc.text(&#x27;Gestor de Incidencias · DI 0488&#x27;, 14, altoPagina - 8);
+      },
+    });
+
+    // Pie con «Página X de Y» en todas las páginas.
+    const totalPaginas &#x3D; doc.getNumberOfPages();
+    const altoPagina &#x3D; doc.internal.pageSize.getHeight();
+    for (let pagina &#x3D; 1; pagina &lt;&#x3D; totalPaginas; pagina++) {
+      doc.setPage(pagina);
+      doc.setFontSize(8);
+      doc.setTextColor(148, 163, 184);
+      doc.text(&#x60;Página ${pagina} de ${totalPaginas}&#x60;, anchoPagina - 14, altoPagina - 8, {
+        align: &#x27;right&#x27;,
+      });
+    }
+
+    doc.save(&#x60;${nombre}-${hoy()}.pdf&#x60;);
+  }
+
+  /** Resumen de una incidencia concreta en PDF (detalle). */
+  exportarIncidenciaPdf(incidencia: Incidencia): void {
+    const doc &#x3D; new jsPDF({ unit: &#x27;mm&#x27;, format: &#x27;a4&#x27; });
+    const anchoPagina &#x3D; doc.internal.pageSize.getWidth();
+
+    doc.setFillColor(15, 23, 42);
+    doc.rect(0, 0, anchoPagina, 34, &#x27;F&#x27;);
+    doc.setFont(&#x27;helvetica&#x27;, &#x27;bold&#x27;);
+    doc.setFontSize(15);
+    doc.setTextColor(255, 255, 255);
+    doc.text(&#x60;Incidencia ${incidencia.codigo}&#x60;, 14, 16);
+    doc.setFont(&#x27;helvetica&#x27;, &#x27;normal&#x27;);
+    doc.setFontSize(9.5);
+    doc.setTextColor(203, 213, 225);
+    doc.text(&#x27;Gestor de Incidencias · módulo DI 0488&#x27;, 14, 23);
+
+    doc.setTextColor(15, 23, 42);
+    doc.setFont(&#x27;helvetica&#x27;, &#x27;bold&#x27;);
+    doc.setFontSize(13);
+    doc.text(doc.splitTextToSize(incidencia.titulo, anchoPagina - 28), 14, 46);
+
+    autoTable(doc, {
+      startY: 58,
+      theme: &#x27;plain&#x27;,
+      body: [
+        [&#x27;Estado&#x27;, ETIQUETA_ESTADO[incidencia.estado]],
+        [&#x27;Prioridad&#x27;, ETIQUETA_PRIORIDAD[incidencia.prioridad]],
+        [&#x27;Categoría&#x27;, incidencia.categoria],
+        [&#x27;Fecha de alta&#x27;, formatearFechaHora(incidencia.fecha)],
+        [&#x27;Última actualización&#x27;, formatearFechaHora(incidencia.actualizadoEn)],
+        [&#x27;Solicitante&#x27;, incidencia.solicitante],
+      ],
+      styles: { font: &#x27;helvetica&#x27;, fontSize: 10, cellPadding: 2.2, textColor: [51, 65, 85] },
+      columnStyles: {
+        0: { cellWidth: 46, fontStyle: &#x27;bold&#x27;, textColor: [100, 116, 139] },
+      },
+      margin: { left: 14, right: 14 },
+    });
+
+    const y &#x3D; (doc as jsPDF &amp; { lastAutoTable?: { finalY: number } }).lastAutoTable?.finalY ?? 100;
+    doc.setFont(&#x27;helvetica&#x27;, &#x27;bold&#x27;);
+    doc.setFontSize(11);
+    doc.setTextColor(15, 23, 42);
+    doc.text(&#x27;Descripción&#x27;, 14, y + 12);
+    doc.setFont(&#x27;helvetica&#x27;, &#x27;normal&#x27;);
+    doc.setFontSize(10);
+    doc.setTextColor(51, 65, 85);
+    doc.text(doc.splitTextToSize(incidencia.descripcion, anchoPagina - 28), 14, y + 19);
+
+    doc.save(&#x60;${incidencia.codigo.toLowerCase()}-${hoy()}.pdf&#x60;);
+  }
+}
+
+/** Escapa una celda CSV: comillas dobles y separador seguro. */
+function escaparCelda(valor: string): string {
+  const texto &#x3D; valor.replace(/&quot;/g, &#x27;&quot;&quot;&#x27;).replace(/\r?\n/g, &#x27; &#x27;);
+  return &#x60;&quot;${texto}&quot;&#x60;;
+}
+
+/** Fecha de hoy en formato &#x60;AAAA-MM-DD&#x60;, para el nombre del archivo. */
+function hoy(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
+/** Descarga un Blob en el navegador. */
+function descargar(blob: Blob, nombreArchivo: string): void {
+  const url &#x3D; URL.createObjectURL(blob);
+  const enlace &#x3D; document.createElement(&#x27;a&#x27;);
+  enlace.href &#x3D; url;
+  enlace.download &#x3D; nombreArchivo;
+  enlace.rel &#x3D; &#x27;noopener&#x27;;
+  document.body.appendChild(enlace);
+  enlace.click();
+  enlace.remove();
+  URL.revokeObjectURL(url);
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ExportService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

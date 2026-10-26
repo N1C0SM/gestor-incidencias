@@ -1,0 +1,14 @@
+:host {
+  display: block;
+}
+
+/* Espaciado del estado vacío y ancho de lectura cómodo. */
+.gi-empty p {
+  max-width: 44ch;
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+.gi-empty ion-button {
+  margin-top: 6px;
+}

@@ -1,0 +1,40 @@
+:host {
+  display: block;
+}
+
+/* Chart.js fija el ancho del lienzo en línea; sin esto la columna no podría
+   encogerse al reducir la ventana y la tarjeta desbordaría la rejilla. */
+.gi-dashboard__main > .gi-card {
+  min-width: 0;
+}
+
+/* La tarjeta «flush» deja la tabla a sangre: este relleno la alinea con el título. */
+.gi-dashboard__main app-data-table {
+  display: block;
+  padding: 0 20px 18px;
+}
+
+.gi-cargando {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 84px 16px 96px;
+  color: var(--gi-ink-muted);
+}
+
+.gi-cargando ion-spinner {
+  width: 34px;
+  height: 34px;
+  color: var(--gi-primary);
+}
+
+.gi-cargando__texto {
+  font-size: 14.5px;
+}
+
+/* En pantallas estrechas el relleno de la tabla se reduce para no perder ancho. */
+@media (max-width: 640px) {
+  .gi-dashboard__main app-data-table {
+    padding: 0 16px 16px;
+  }
+}

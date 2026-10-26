@@ -1,0 +1,91 @@
+<ion-content>
+    <main class="gi-auth">
+      <h1 class="visually-hidden">Crear una cuenta en el Gestor de Incidencias</h1>
+
+      <div class="gi-auth__grid">
+        <app-brand-panel />
+
+        <section class="gi-auth-card" aria-labelledby="titulo-registro">
+          <h2 id="titulo-registro" class="gi-auth-card__title">Crear una cuenta</h2>
+          <p class="gi-auth-card__subtitle">
+            Regístrate para registrar y seguir tus incidencias.
+          </p>
+
+          <form
+            class="gi-auth-card__form gi-form"
+            [formGroup]="formulario"
+            (ngSubmit)="crearCuenta()"
+            novalidate
+          >
+            <app-campo
+              etiqueta="Nombre y apellidos"
+              placeholder="Nombre completo"
+              autocomplete="name"
+              formControlName="nombre"
+              [error]="errores().nombre"
+            />
+
+            <app-campo
+              etiqueta="Correo electrónico"
+              tipo="email"
+              placeholder="nombre@centro.es"
+              autocomplete="email"
+              inputmode="email"
+              formControlName="email"
+              [ayuda]="ayudaEmail()"
+              [error]="errores().email"
+            />
+
+            <app-campo
+              etiqueta="Contraseña"
+              tipo="password"
+              placeholder="Mínimo 6 caracteres"
+              autocomplete="new-password"
+              formControlName="password"
+              revelable
+              ayuda="Al menos 6 caracteres, con una letra y un número."
+              [error]="errores().password"
+            />
+
+            <app-campo
+              etiqueta="Repite la contraseña"
+              tipo="password"
+              placeholder="Vuelve a escribir la contraseña"
+              autocomplete="new-password"
+              formControlName="passwordRepeticion"
+              [error]="errores().passwordRepeticion"
+            />
+
+            @if (errorGeneral(); as mensaje) {
+              <p class="gi-alerta" role="alert">
+                <ion-icon name="alert-circle-outline" aria-hidden="true" />
+                <span>{{ mensaje }}</span>
+              </p>
+            }
+
+            <ion-button
+              class="gi-btn gi-btn--block gi-auth-card__submit"
+              type="submit"
+              [disabled]="enviando() || comprobandoCorreo()"
+            >
+              @if (enviando()) {
+                <ion-spinner name="dots" slot="start" aria-hidden="true" />
+              }
+              Crear cuenta
+            </ion-button>
+          </form>
+
+          <p class="gi-auth-card__alt">
+            ¿Ya tienes cuenta?
+            <a routerLink="/login">Iniciar sesión</a>
+          </p>
+
+          <hr class="gi-auth-card__rule" />
+
+          <p class="gi-nota">
+            Las cuentas se guardan en memoria: es una simulación didáctica, no hay datos reales.
+          </p>
+        </section>
+      </div>
+    </main>
+</ion-content>

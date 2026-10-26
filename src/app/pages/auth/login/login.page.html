@@ -1,0 +1,86 @@
+<ion-content>
+    <main class="gi-auth">
+      <h1 class="visually-hidden">Acceso al Gestor de Incidencias</h1>
+
+      <div class="gi-auth__grid">
+        <app-brand-panel />
+
+        <section class="gi-auth-card" aria-labelledby="titulo-acceso">
+          <h2 id="titulo-acceso" class="gi-auth-card__title">Iniciar sesión</h2>
+          <p class="gi-auth-card__subtitle">Introduce tus datos para entrar.</p>
+
+          <form
+            class="gi-auth-card__form gi-form"
+            [formGroup]="formulario"
+            (ngSubmit)="entrar()"
+            novalidate
+          >
+            <app-campo
+              etiqueta="Correo electrónico"
+              tipo="email"
+              placeholder="nombre@centro.es"
+              autocomplete="username"
+              inputmode="email"
+              formControlName="email"
+              [error]="errores().email"
+            />
+
+            <app-campo
+              etiqueta="Contraseña"
+              tipo="password"
+              placeholder="Mínimo 6 caracteres"
+              autocomplete="current-password"
+              formControlName="password"
+              revelable
+              [error]="errores().password"
+            />
+
+            @if (errorGeneral(); as mensaje) {
+              <p class="gi-alerta" role="alert">
+                <ion-icon name="alert-circle-outline" aria-hidden="true" />
+                <span>{{ mensaje }}</span>
+              </p>
+            }
+
+            <ion-button
+              class="gi-btn gi-btn--block gi-auth-card__submit"
+              type="submit"
+              [disabled]="enviando()"
+            >
+              @if (enviando()) {
+                <ion-spinner name="dots" slot="start" aria-hidden="true" />
+              }
+              Entrar
+            </ion-button>
+          </form>
+
+          <p class="gi-auth-card__alt">
+            ¿No tienes cuenta?
+            <a routerLink="/registro">Crear una cuenta</a>
+          </p>
+
+          <hr class="gi-auth-card__rule" />
+
+          <h3 class="gi-auth-card__hint">Credenciales de prueba</h3>
+
+          <div class="gi-demo">
+            @for (credencial of credenciales; track credencial.email) {
+              <div class="gi-demo__item">
+                <span class="gi-demo__datos">
+                  <strong class="gi-demo__rol">{{ credencial.rol }}</strong>
+                  <span class="gi-demo__credenciales">
+                    {{ credencial.email }} · {{ credencial.password }}
+                  </span>
+                </span>
+                <button type="button" class="gi-demo__usar" (click)="usar(credencial)">
+                  Usar<span class="visually-hidden">
+                    la cuenta {{ credencial.rol }}</span
+                  >
+                </button>
+              </div>
+            }
+          </div>
+        </section>
+      </div>
+    </main>
+</ion-content>

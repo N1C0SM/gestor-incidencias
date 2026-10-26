@@ -1,0 +1,83 @@
+<div class="gi-field" [class.gi-field--error]="mostrarError()">
+  <div class="gi-field__control">
+    <label class="gi-field__etiqueta" [attr.for]="id">{{ etiqueta() }}</label>
+
+    @if (esSelect()) {
+      <select
+        class="gi-field__select"
+        [id]="id"
+        [value]="valorActual()"
+        [disabled]="estaDeshabilitado()"
+        [attr.required]="requerido() ? true : null"
+        [attr.aria-invalid]="mostrarError() ? 'true' : null"
+        [attr.aria-describedby]="descritoPor()"
+        (change)="alEscribir($event)"
+        (blur)="alSalir()"
+      >
+        <option value="" disabled>{{ placeholder() || 'Selecciona una opción' }}</option>
+        @for (opcion of opciones(); track opcion.valor) {
+          <option [value]="opcion.valor">{{ opcion.etiqueta }}</option>
+        }
+      </select>
+      <ion-icon class="gi-field__chevron" name="chevron-down-outline" aria-hidden="true" />
+    } @else if (esTextarea()) {
+      <textarea
+        class="gi-field__input"
+        [id]="id"
+        [value]="valorActual()"
+        [rows]="filas()"
+        [placeholder]="placeholder()"
+        [disabled]="estaDeshabilitado()"
+        [attr.maxlength]="maxlength()"
+        [attr.required]="requerido() ? true : null"
+        [attr.aria-invalid]="mostrarError() ? 'true' : null"
+        [attr.aria-describedby]="descritoPor()"
+        (input)="alEscribir($event)"
+        (blur)="alSalir()"
+      ></textarea>
+    } @else {
+      <input
+        class="gi-field__input"
+        [id]="id"
+        [type]="tipoEfectivo()"
+        [value]="valorActual()"
+        [placeholder]="placeholder()"
+        [attr.autocomplete]="autocomplete()"
+        [attr.maxlength]="maxlength()"
+        [attr.inputmode]="inputmode()"
+        [disabled]="estaDeshabilitado()"
+        [attr.required]="requerido() ? true : null"
+        [attr.aria-invalid]="mostrarError() ? 'true' : null"
+        [attr.aria-describedby]="descritoPor()"
+        (input)="alEscribir($event)"
+        (blur)="alSalir()"
+      />
+
+      @if (esPassword()) {
+        <button
+          type="button"
+          class="gi-field__icono"
+          [attr.aria-label]="etiquetaBotonClave()"
+          [attr.aria-pressed]="claveALaVista()"
+          (click)="alternarClave()"
+        >
+          <ion-icon
+            [name]="claveALaVista() ? 'eye-off-outline' : 'eye-outline'"
+            aria-hidden="true"
+          />
+        </button>
+      }
+    }
+  </div>
+
+  @if (ayuda().length > 0 && !mostrarError()) {
+    <p class="gi-field__ayuda" [id]="idAyuda">{{ ayuda() }}</p>
+  }
+
+  @if (mostrarError()) {
+    <p class="gi-field__error" [id]="idError" role="alert">
+      <ion-icon name="alert-circle-outline" aria-hidden="true" />
+      <span>{{ error() }}</span>
+    </p>
+  }
+</div>

@@ -1,0 +1,7 @@
+{
+  "name": "gestor-incidencias",
+  "type": "angular-standalone",
+  "integrations": {
+    "capacitor": {}
+  }
+}

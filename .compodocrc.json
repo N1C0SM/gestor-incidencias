@@ -1,0 +1,13 @@
+{
+  "tsconfig": "tsconfig.doc.json",
+  "output": "docs",
+  "name": "Gestor de Incidencias · DI 0488",
+  "hideGenerator": true,
+  "disablePrivate": true,
+  "disableInternal": true,
+  "disableLifeCycleHooks": false,
+  "disableCoverage": false,
+  "disableGraph": false,
+  "theme": "readthedocs",
+  "silent": true
+}

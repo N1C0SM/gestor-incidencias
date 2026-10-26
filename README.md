@@ -13,6 +13,9 @@ navegación inferior.
 > memoria. No hay backend ni base de datos real. Consulta el
 > [aviso sobre los datos](#aviso-sobre-los-datos).
 
+**Repositorio:** <https://github.com/N1C0SM/gestor-incidencias> ·
+**Documentación:** <https://n1c0sm.github.io/gestor-incidencias/>
+
 No hay una demo publicada en Internet: la aplicación se ejecuta en local siguiendo los pasos de
 [Puesta en marcha](#puesta-en-marcha).
 

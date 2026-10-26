@@ -1,0 +1,427 @@
+<div class="gi-page">
+  <header class="gi-page__head">
+    <div>
+      <h1 class="gi-page__title">Ayuda</h1>
+      <p class="gi-page__subtitle">Guía rápida del Gestor de Incidencias.</p>
+    </div>
+  </header>
+
+  <article class="gi-prose">
+    <section>
+      <h2>Qué es</h2>
+
+      <p>
+        El <strong>Gestor de Incidencias</strong> es la aplicación del centro educativo para
+        comunicar y seguir los problemas técnicos del día a día: un proyector que no enciende, el
+        Wi-Fi de la biblioteca que falla o una licencia de software que ha caducado. Cualquier
+        persona del centro puede registrar una incidencia en menos de un minuto y consultar después
+        en qué punto está.
+      </p>
+
+      <p>La aplicación ofrece dos perfiles de uso:</p>
+
+      <ul>
+        <li>
+          <strong>Usuario</strong>: registra incidencias y sigue el estado de las que ha creado.
+        </li>
+        <li>
+          <strong>Administrador</strong>: además de lo anterior, ve todas las incidencias del
+          centro, cambia su estado y consulta el panel con las estadísticas y la actividad reciente.
+        </li>
+      </ul>
+
+      <p>
+        Todo ocurre en el navegador: no hay servidor ni base de datos externa. Los datos son
+        ficticios y se generan cada vez que se abre la aplicación; al final de esta guía tienes el
+        aviso completo sobre los datos.
+      </p>
+    </section>
+
+    <section>
+      <h2>Cómo registrarse y acceder</h2>
+
+      <p>Hay dos formas de entrar en la aplicación:</p>
+
+      <ol>
+        <li>
+          <strong>Usar una cuenta de prueba</strong>: es la manera más rápida de revisar la
+          aplicación. En la pantalla de acceso, pulsa <strong>Usar</strong> sobre la credencial que
+          te interese y el formulario se rellena solo.
+        </li>
+        <li>
+          <strong>Crear una cuenta propia</strong> desde el enlace «Crear una cuenta». La cuenta
+          nueva se crea con el rol <strong>Usuario</strong> y la sesión queda iniciada
+          automáticamente.
+        </li>
+      </ol>
+
+      <h3>Credenciales de prueba</h3>
+
+      <table class="gi-tabla-simple">
+        <caption>
+          Cuentas de prueba incluidas en la aplicación
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Rol</th>
+            <th scope="col">Correo electrónico</th>
+            <th scope="col">Contraseña</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Administrador</td>
+            <td><code>admin@centro.es</code></td>
+            <td><code>Admin123</code></td>
+          </tr>
+          <tr>
+            <td>Usuario estándar</td>
+            <td><code>usuario@centro.es</code></td>
+            <td><code>Usuario123</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Qué datos pide el registro</h3>
+
+      <ul>
+        <li><strong>Nombre y apellidos</strong>: al menos 3 caracteres.</li>
+        <li>
+          <strong>Correo electrónico</strong>: debe tener formato válido y no puede estar ya
+          registrado; la aplicación lo comprueba mientras escribes.
+        </li>
+        <li>
+          <strong>Contraseña</strong>: al menos 6 caracteres, con una letra y un número. Hay que
+          repetirla para evitar erratas.
+        </li>
+      </ul>
+
+      <p class="gi-nota">
+        La sesión se recuerda entre recargas, pero las cuentas creadas desde el registro no: viven
+        en memoria y desaparecen al recargar la página.
+      </p>
+    </section>
+
+    <section>
+      <h2>Cómo registrar una incidencia</h2>
+
+      <ol>
+        <li>
+          Pulsa <strong>Nueva incidencia</strong> en el listado o abre directamente el
+          <a routerLink="/app/incidencias/nueva">formulario de alta</a>.
+        </li>
+        <li>
+          Escribe un <strong>título</strong> claro, de entre 5 y 120 caracteres. Por ejemplo: «El
+          proyector del aula 12 no enciende».
+        </li>
+        <li>
+          Elige la <strong>categoría</strong> (Equipamiento, Redes, Software, Mobiliario, Cuentas u
+          Otros) y la <strong>prioridad</strong> (Alta, Media o Baja).
+        </li>
+        <li>
+          Describe el problema con al menos 20 caracteres: qué ocurre, desde cuándo, en qué aula o
+          equipo y qué has probado ya.
+        </li>
+        <li>
+          Pulsa <strong>Crear incidencia</strong>. La aplicación asigna un código
+          <code>INC-####</code> (por ejemplo, <code>INC-1013</code>), la incidencia nace en estado
+          <strong>Abierta</strong> y pasas a su pantalla de detalle.
+        </li>
+      </ol>
+
+      <p>
+        Después puedes volver al listado cuando quieras: como usuario verás solo tus incidencias;
+        como administrador, las de todo el centro. La barra inferior permite moverte entre
+        <strong>Incidencias</strong>, <strong>Ayuda</strong> y, si eres administrador,
+        <strong>Panel</strong>; el botón <strong>Salir</strong> cierra la sesión.
+      </p>
+
+      <p class="gi-nota">
+        Una descripción detallada ahorra preguntas: indica si el fallo se repite, si afecta a más
+        personas y qué pasos lo provocan.
+      </p>
+    </section>
+
+    <section>
+      <h2>Estados por los que pasa</h2>
+
+      <p>Toda incidencia tiene uno de estos tres estados:</p>
+
+      <ul>
+        <li>
+          <span class="gi-pill gi-pill--abierta">Abierta</span>
+          Se acaba de registrar y todavía no la ha revisado nadie. Es el estado inicial y el que
+          aparece en la tarjeta «Abiertas» del panel.
+        </li>
+        <li>
+          <span class="gi-pill gi-pill--en_proceso">En proceso</span>
+          El equipo técnico ya la ha tomado y está trabajando en ella.
+        </li>
+        <li>
+          <span class="gi-pill gi-pill--cerrada">Cerrada</span>
+          El problema está resuelto y la incidencia queda como historial. Si vuelve a ocurrir, un
+          administrador puede devolverla a «Abierta» o a «En proceso».
+        </li>
+      </ul>
+
+      <p>
+        El recorrido habitual es <strong>Abierta → En proceso → Cerrada</strong>, aunque no es
+        obligatorio pasar por todos los estados: una incidencia puede cerrarse directamente. Solo
+        los administradores pueden cambiarlo, desde la tarjeta «Cambiar estado» de la pantalla de
+        detalle; cada cambio queda registrado en la actividad del panel.
+      </p>
+    </section>
+
+    <section>
+      <h2>Qué puede hacer cada rol</h2>
+
+      <table class="gi-tabla-simple">
+        <caption>
+          Acciones permitidas según el rol de la persona que inicia sesión
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Acción</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Administrador</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Iniciar y cerrar sesión</td>
+            <td>Sí</td>
+            <td>Sí</td>
+          </tr>
+          <tr>
+            <td>Crear una incidencia</td>
+            <td>Sí</td>
+            <td>Sí</td>
+          </tr>
+          <tr>
+            <td>Ver todas las incidencias del centro</td>
+            <td>No, solo las suyas</td>
+            <td>Sí</td>
+          </tr>
+          <tr>
+            <td>Cambiar el estado de una incidencia</td>
+            <td>No</td>
+            <td>Sí</td>
+          </tr>
+          <tr>
+            <td>Ver el panel con el gráfico de estados</td>
+            <td>No</td>
+            <td>Sí</td>
+          </tr>
+          <tr>
+            <td>Exportar el listado a CSV o PDF</td>
+            <td>Sí, sus incidencias</td>
+            <td>Sí, todas</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="gi-nota">
+        El panel está protegido: si una cuenta de usuario abre su dirección directamente, la
+        aplicación la devuelve al listado de incidencias.
+      </p>
+    </section>
+
+    <section>
+      <h2>Informes en CSV y PDF</h2>
+
+      <p>
+        Los botones <strong>CSV</strong> y <strong>PDF</strong> del listado —y los del panel de
+        administración— generan un informe en el navegador con las incidencias que estás viendo; es
+        decir, respetan el filtro de estado que tengas seleccionado.
+      </p>
+
+      <h3>Informe CSV</h3>
+
+      <ul>
+        <li>
+          Se descarga como <code>incidencias-AAAA-MM-DD.csv</code>, en UTF-8 con marca de orden de
+          bytes y separador de punto y coma: Excel lo abre directamente sin pedir nada más.
+        </li>
+        <li>
+          Incluye las columnas <strong>Código</strong>, <strong>Título</strong>,
+          <strong>Estado</strong>, <strong>Prioridad</strong>, <strong>Categoría</strong>,
+          <strong>Fecha</strong>, <strong>Solicitante</strong> y <strong>Descripción</strong>.
+        </li>
+      </ul>
+
+      <h3>Informe PDF</h3>
+
+      <ul>
+        <li>
+          Se descarga como <code>incidencias-AAAA-MM-DD.pdf</code>, en A4 horizontal, con el título
+          del informe, la fecha de generación y el número de incidencias en la cabecera.
+        </li>
+        <li>
+          La tabla lleva las columnas Código, Título, Estado, Prioridad, Categoría, Fecha y
+          Solicitante, y el pie muestra el proyecto y la numeración «Página X de Y».
+        </li>
+        <li>
+          Desde el detalle de una incidencia, el botón <strong>Exportar PDF</strong> genera un
+          resumen individual con el código, el estado, las fechas, el solicitante y la descripción.
+        </li>
+      </ul>
+
+      <p class="gi-nota">
+        Los informes se crean en el propio dispositivo con jsPDF: no se envía ningún dato a un
+        servidor. En el móvil, el archivo puede abrirse directamente en el visor de documentos.
+      </p>
+    </section>
+
+    <section>
+      <h2>Tecnologías utilizadas</h2>
+
+      <ul>
+        <li>
+          <strong>Angular 22</strong>: componentes standalone, <em>signals</em>, control de flujo
+          con <code>&#64;if</code> y <code>&#64;for</code> y carga perezosa de cada pantalla.
+        </li>
+        <li>
+          <strong>Ionic 9</strong> en modo Material: cabecera, contenido desplazable, botones,
+          segmentos, avisos emergentes y barra de navegación inferior.
+        </li>
+        <li>
+          <strong>TypeScript 6</strong> en modo estricto y <strong>Sass</strong> para los estilos.
+        </li>
+        <li>
+          <strong>RxJS 7</strong> en los servicios: el feed de actividad del panel es un flujo de
+          documentos que se actualiza al instante.
+        </li>
+        <li>
+          <strong>Chart.js 4</strong>: gráfico de barras con las incidencias por estado del panel.
+        </li>
+        <li>
+          <strong>jsPDF 4</strong> y <strong>jspdf-autotable 5</strong>: informes en PDF y en CSV.
+        </li>
+        <li>
+          <strong>PWA</strong> con <code>&#64;angular/service-worker</code>: la compilación de
+          producción es instalable y se puede abrir sin conexión tras la primera visita.
+        </li>
+        <li>
+          <strong>Capacitor 8</strong>: base para empaquetar la misma aplicación como app nativa de
+          Android o iOS, si se necesita.
+        </li>
+        <li>
+          <strong>Vitest 5</strong> con jsdom para las pruebas unitarias,
+          <strong>ESLint 10</strong> con angular-eslint para el análisis estático y
+          <strong>Compodoc 2</strong> para la documentación del código.
+        </li>
+      </ul>
+
+      <h3>Para saber más</h3>
+
+      <ul>
+        <li>
+          <a
+            class="gi-ayuda__enlace"
+            href="https://angular.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Documentación oficial de Angular
+            <span class="visually-hidden"> (se abre en una pestaña nueva)</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="gi-ayuda__enlace"
+            href="https://ionicframework.com/docs"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Documentación oficial de Ionic
+            <span class="visually-hidden"> (se abre en una pestaña nueva)</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="gi-ayuda__enlace"
+            href="https://www.chartjs.org/docs/latest/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Guía de Chart.js
+            <span class="visually-hidden"> (se abre en una pestaña nueva)</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="gi-ayuda__enlace"
+            href="https://github.com/parallax/jsPDF"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Repositorio de jsPDF en GitHub
+            <span class="visually-hidden"> (se abre en una pestaña nueva)</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Preguntas frecuentes</h2>
+
+      <h3>¿Se guardan los cambios si recargo la página?</h3>
+      <p>
+        No. Usuarios, incidencias y actividad viven en memoria y se reinician con los datos de
+        ejemplo. Lo único que se conserva es la sesión iniciada, que se guarda en el navegador para
+        no pedir las credenciales en cada recarga.
+      </p>
+
+      <h3>¿Por qué no veo el panel de administración?</h3>
+      <p>
+        Porque es exclusivo del rol administrador. Con una cuenta de usuario la barra inferior no
+        muestra la pestaña «Panel» y, si se escribe su dirección a mano, la aplicación redirige al
+        listado de incidencias.
+      </p>
+
+      <h3>¿Puedo cambiar el estado de una incidencia?</h3>
+      <p>
+        Solo si has iniciado sesión como administrador. Si eres usuario, comenta el caso al equipo
+        técnico del centro para que sea él quien actualice el estado.
+      </p>
+
+      <h3>He olvidado mi contraseña, ¿puedo recuperarla?</h3>
+      <p>
+        No hay recuperación: al ser una simulación sin servidor de correo no se envían avisos. Entra
+        con una de las cuentas de prueba o crea una cuenta nueva desde el registro.
+      </p>
+
+      <h3>¿Funciona sin conexión a internet?</h3>
+      <p>
+        La compilación de producción registra un <em>service worker</em>: tras la primera visita la
+        aplicación queda guardada en el navegador y se puede abrir sin conexión. En el servidor de
+        desarrollo esa caché está desactivada, así que ahí sí se necesita conexión.
+      </p>
+
+      <h3>¿Puedo exportar los datos a otro sistema?</h3>
+      <p>
+        Sí, a través del CSV: al ser un formato de texto con columnas, se puede abrir en Excel,
+        Google Sheets o importar en otra herramienta. El PDF está pensado para imprimir o adjuntar
+        en un informe.
+      </p>
+    </section>
+
+    <section class="gi-ayuda__aviso">
+      <h2>Aviso sobre los datos</h2>
+
+      <p>
+        <strong>Todos los datos de esta aplicación son ficticios y viven en memoria.</strong> Los
+        usuarios, las incidencias y la actividad iniciales se cargan desde
+        <code>src/app/core/data/seed.ts</code> cada vez que arranca la aplicación, y la base de
+        datos simulada de <code>src/app/core/services/sql.service.ts</code> solo existe mientras la
+        página está abierta.
+      </p>
+
+      <p>
+        No se envía nada a ningún servidor ni se almacena información personal real. Lo único que
+        queda en el navegador es la sesión, guardada en el almacenamiento local con la clave
+        <code>gi.sesion</code>; puede borrarse cerrando sesión.
+      </p>
+    </section>
+  </article>
+</div>

@@ -1,0 +1,36 @@
+/* Pantalla de ayuda: solo los detalles que no cubre la clase global .gi-prose. */
+
+.gi-tabla-simple caption {
+  caption-side: top;
+  padding-bottom: 8px;
+  color: var(--gi-ink-muted);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.gi-prose .gi-pill {
+  margin-right: 6px;
+  vertical-align: 1px;
+}
+
+/* Aviso de datos ficticios: información, no error (por eso no reutiliza .gi-alerta). */
+.gi-ayuda__aviso {
+  margin-top: 34px;
+  padding: 16px 18px;
+  border-left: 4px solid var(--gi-primary);
+  border-radius: var(--gi-radius-sm);
+  background: var(--gi-primary-soft);
+}
+
+.gi-ayuda__aviso h2 {
+  margin-top: 0;
+}
+
+.gi-ayuda__aviso p:last-child {
+  margin-bottom: 0;
+}
+
+.gi-ayuda__enlace {
+  text-decoration: underline;
+}
